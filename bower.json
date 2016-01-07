@@ -1,5 +1,5 @@
 {
-  "name": "viewerImage",
+  "name": "Image Viewer",
   "id": "viewerImage",
   "description": "A TagSpaces extension allowing .",
   "type": "viewer",
