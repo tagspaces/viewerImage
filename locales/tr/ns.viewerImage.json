@@ -1,11 +1,11 @@
 {
-    "zoomOut": "Zoom Out",
-    "zoomIn": "Zoom In",
-    "zoomReset": "Zoom Reset",
-    "rotateRight": "Rotate Right",
-    "rotateLeft": "Rotate Left",
-    "print": "Print",
-    "about": "About",
-    "aboutTitle": "About ViewerImage",
+    "zoomOut": "Uzaklaştır",
+    "zoomIn": "Yakınlaştır",
+    "zoomReset": "Yakınlaştırma Ayarını Sıfırla",
+    "rotateRight": "Sağa Döndür",
+    "rotateLeft": "Sola Döndür",
+    "print": "Yazdır",
+    "about": "Hakkında",
+    "aboutTitle": "ViewerImage Hakkında",
     "-": "-"
 }
