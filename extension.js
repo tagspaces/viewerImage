@@ -34,7 +34,7 @@ define(function(require, exports, module) {
       sandbox: "allow-same-origin allow-scripts allow-modals",
       scrolling: "no",
       type: "content",
-      src: extensionDirectory + "/index.html?cp=" + filePath + "&setLng=" + lng,
+      src: extensionDirectory + "/index.html?cp=" + encodeURIComponent(filePath) + "&setLng=" + lng,
       "nwdisable": "",
       "nwfaketop": ""
     }));
