@@ -19,7 +19,7 @@
     "jpg",
     "png"
   ],
-  "license": "",
+  "license": "MIT",
   "main": [
     "extension.js"
   ],
