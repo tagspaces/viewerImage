@@ -4,13 +4,12 @@
 define(function(require, exports, module) {
   "use strict";
 
-  console.log("Loading viewerImage");
-
   var extensionID = "viewerImage"; // ID should be equal to the directory name where the ext. is located
   var extensionSupportedFileTypes = ["jpeg", "jpg", "png", "gif", "bmp", "ico", "webp"];
 
-  var TSCORE = require("tscore");
+  console.log("Loading " + extensionID);
 
+  var TSCORE = require("tscore");
   var extensionDirectory = TSCORE.Config.getExtensionPath() + "/" + extensionID;
   var UI;
   var currentFilePath;
@@ -41,22 +40,22 @@ define(function(require, exports, module) {
 			.hammer().on("swiperight", function() {
 				TSCORE.FileOpener.openFile(TSCORE.PerspectiveManager.getPrevFile(internPath));
 			}); */
-  };
+  }
 
   function viewerMode(isViewerMode) {
 
     console.log("viewerMode not supported on this extension");
-  };
+  }
 
   function setContent(content) {
 
     console.log("setContent not supported on this extension");
-  };
+  }
 
   function getContent() {
 
     console.log("getContent not supported on this extension");
-  };
+  }
 
   exports.init = init;
   exports.getContent = getContent;
