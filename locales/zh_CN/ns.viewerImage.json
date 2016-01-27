@@ -1,11 +1,11 @@
 {
-    "zoomOut": "Zoom Out",
-    "zoomIn": "Zoom In",
-    "zoomReset": "Zoom Reset",
-    "rotateRight": "Rotate Right",
-    "rotateLeft": "Rotate Left",
-    "print": "Print",
-    "about": "About",
-    "aboutTitle": "About ViewerImage",
+    "zoomOut": "缩小",
+    "zoomIn": "放大",
+    "zoomReset": "重置缩放",
+    "rotateRight": "向右旋转",
+    "rotateLeft": "向左旋转",
+    "print": "打印",
+    "about": "关于",
+    "aboutTitle": "关于ViewerImage",
     "-": "-"
 }

@@ -1,27 +1,22 @@
-/* Copyright (c) 2013 The Tagspaces Authors. All rights reserved.
- * Use of this source code is governed by a AGPL3 license that
- * can be found in the LICENSE file. */
+/* Copyright (c) 2013-2016 The TagSpaces Authors.
+ * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
 
 define(function(require, exports, module) {
   "use strict";
 
   console.log("Loading viewerImage");
 
-  var extensionTitle = "Image Viewer";
-  var extensionID = "viewerImage"; // ID should be equal to the directory name where the ext. is located   
-  var extensionType = "viewer";
-  var extensionIcon = "icon-list"; // A name of an icon from the font-awesome set
+  var extensionID = "viewerImage"; // ID should be equal to the directory name where the ext. is located
   var extensionSupportedFileTypes = ["jpeg", "jpg", "png", "gif", "bmp", "ico", "webp"];
 
   var TSCORE = require("tscore");
 
   var extensionDirectory = TSCORE.Config.getExtensionPath() + "/" + extensionID;
   var UI;
+  var currentFilePath;
+  var $containerElement;
 
-  var currentFilePath,
-    $containerElement;
-
-  exports.init = function(filePath, elementID) {
+  function init(filePath, elementID) {
     console.log("Initalization Browser Image Viewer...");
 
     $containerElement = $('#' + elementID);
@@ -48,23 +43,24 @@ define(function(require, exports, module) {
 			}); */
   };
 
-  exports.viewerMode = function(isViewerMode) {
+  function viewerMode(isViewerMode) {
+
     console.log("viewerMode not supported on this extension");
   };
 
-  exports.setContent = function(content) {
+  function setContent(content) {
+
     console.log("setContent not supported on this extension");
   };
 
-  exports.getContent = function() {
+  function getContent() {
+
     console.log("getContent not supported on this extension");
   };
 
-  // Extension Vars
-  exports.Title = extensionTitle;
-  exports.ID = extensionID;
-  exports.Type = extensionType;
-  exports.Icon = extensionIcon;
-  exports.SupportedFileTypes = extensionSupportedFileTypes;
+  exports.init = init;
+  exports.getContent = getContent;
+  exports.setContent = setContent;
+  exports.viewerMode = viewerMode;
 
 });
