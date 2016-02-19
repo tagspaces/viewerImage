@@ -1,7 +1,7 @@
 {
   "name": "Image Viewer",
   "id": "viewerImage",
-  "description": "A TagSpaces extension allowing .",
+  "description": "A TagSpaces extension allowing you to open different kinds of image formats.",
   "type": "viewer",
   "version": "1.0.0",
   "dependencies": {
@@ -17,6 +17,11 @@
   "keywords": [
     "viewer",
     "jpg",
+    "gif",
+    "bmp",
+    "webm",
+    "ico",
+    "svg",
     "png"
   ],
   "license": "MIT",

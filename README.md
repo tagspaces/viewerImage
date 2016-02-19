@@ -1,33 +1,38 @@
-![tagspaces logo](https://raw.github.com/uggrock/tagspaces/master/data/assets/icon96.png) 
-## Introduction
+# Image Viewer
 
-`TagSpaces` is a open source application for managing of your local files. You can find more information about it on its website [tagspaces.org](http://tagspaces.org/). For a quick TagSpaces introduction please see this [video](https://www.youtube.com/embed/CJ2hYU6U-C8) on youtube.
-
-- [TagSpaces blog](http://tagspaces.org/blog/) for any news about tagspaces
-- [the issues tracker](https://github.com/uggrock/tagspaces/issues) for developer support requests
-- [the TagSpaces wiki](https://github.com/uggrock/tagspaces/wiki) for end-users and implementors (currently not really used)
-
-To get updates you can:
-- Subscribe to GitHub updates by clicking the "watch" button up the top right of this page.
-- Subscribe to RSS feed updates for the [master branch](https://github.com/uggrock/tagspaces/commits/master.atom)
+A TagSpaces extension allowing you to open different kinds of image formats
 
 ## Features
 
-* **viewing images:** supporting BMP, PNG, JPEG, GIF and SVG 
+* Opening of the following image formats: JPG, PNG, GIF, SVG, BMP, WEBP, ICO 
+* Zooming and rotating of the opened image 
+* For JPG files it features an integrated EXIF parser used for the auto rotation of the pictures 
+
+## Used libraries
+This extension thankfully relays on the following great libraries:
+
+* [exif.js](https://github.com/exif-js/exif-js) 
+* [jquery-mousewheel](https://github.com/jquery/jquery-mousewheel) 
+* [jquery.panzoom](https://github.com/timmywil/jquery.panzoom) 
+
+## Installation
+
+This extensions is packaged with any new version of TagSpaces
+
+## Source code
+
+The source code of this extension is freely available on [github.com/tagspaces/editorHTML](https://github.com/tagspaces/viewerImage/)
+
+## Development
+
+If you want to extend this extensions, please follow our general [extension development guide](http://tagspaces.org/documentation/extension-development-guide)
+
 
 ## Screenshots
 
-![Lead TagSpaces Screenshot](http://www.tagspaces.org/content/v1.7/tagspaces-browsing.png)
+![Screenshot of the Image Viewer as running in the Linux version of TagSpaces](http://tagspaces.org/extensions/viewerImage/viewerImage-screenshot.png)
 
-## Documentation
 
 ## License
 
-MIT
-
-## Feeds
-- Subscribe to RSS feed updates for the [tagspaces blog](http://tagspaces.org/blog/feed.xml)
-- Subscribe to RSS feed updates for the [master branch](https://github.com/uggrock/tagspace/commits/master.atom)
-
-- - -
-This files is created and edited in `TagSpaces`, using the `viewerMD` and `[editorText]()` extensions.
+[MIT](https://github.com/tagspaces/viewerImage/blob/master/LICENSE.txt)
