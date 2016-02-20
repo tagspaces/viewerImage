@@ -1,4 +1,4 @@
-# Image Viewer
+# Image Viewer for TagSpaces
 
 A TagSpaces extension allowing you to open different kinds of image formats
 
@@ -27,11 +27,9 @@ The source code of this extension is freely available on [github.com/tagspaces/e
 
 If you want to extend this extensions, please follow our general [extension development guide](http://tagspaces.org/documentation/extension-development-guide)
 
-
 ## Screenshots
 
 ![Screenshot of the Image Viewer as running in the Linux version of TagSpaces](http://tagspaces.org/extensions/viewerImage/viewerImage-screenshot.png)
-
 
 ## License
 
