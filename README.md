@@ -21,7 +21,7 @@ This extensions is packaged with any new version of TagSpaces
 
 ## Source code
 
-The source code of this extension is freely available on [github.com/tagspaces/editorHTML](https://github.com/tagspaces/viewerImage/)
+The source code of this extension is freely available on [github.com/tagspaces/viewerImage](https://github.com/tagspaces/viewerImage/)
 
 ## Development
 
