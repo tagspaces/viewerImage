@@ -37,6 +37,16 @@ $(document).ready(function() {
           var orientation = EXIF.getTag(this, "Orientation");
           correctOrientation(orientation);
           //console.log(EXIF.pretty(this));
+          var obj = {};
+          var tags = ['Make', 'Model', 'DateTime', 'Artist', 'Copyright', 'ExposureTime ', 'FNumber', 'ISOSpeedRatings', 'ShutterSpeedValue', 'ApertureValue', 'FocalLength'];
+          for (var tag in tags) {
+            var prop = tags[tag];
+            if (this.exifdata.hasOwnProperty(prop)) {
+              obj[prop] = this.exifdata[prop];
+            }
+          }
+          jQuery.extend(obj, this.iptcdata);
+          console.log("EXIF Object" + JSON.stringify(obj));
         });
       }
     });
