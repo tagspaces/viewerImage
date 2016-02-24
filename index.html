@@ -68,5 +68,39 @@
     </div>
   </div>
 </div>
+<div class="modal" id="exifExtensionModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+        <h4 class="modal-title" data-i18n="ns.viewerImage:exifTitle"></h4>
+      </div>
+      <div class="modal-body" style="max-height: 500px; overflow: auto;">
+        <script type="text/javascript">
+          EXIF.getData(this, function() {
+            var orientation = EXIF.getTag(this, "Orientation");
+            correctOrientation(orientation);
+            var obj = {};
+            var tags = ['Make', 'Model', 'DateTime', 'Artist', 'Copyright', 'ExposureTime ',
+            'FNumber', 'ISOSpeedRatings', 'ShutterSpeedValue', 'ApertureValue', 'FocalLength'];
+            for (var tag in tags) {
+              var prop = tags[tag];
+              if (this.exifdata.hasOwnProperty(prop)) {
+                obj[prop] = this.exifdata[prop];
+              }
+            }
+            jQuery.extend(obj, this.iptcdata);
+            console.log(EXIF.pretty(this));
+            console.log(obj);
+          });
+        </script>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true"><i class="fa fa-check fa-lg"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
