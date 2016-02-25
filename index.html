@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="../../assets/tagspaces.css"/>
   <link rel="stylesheet" href="extension.css"/>
 </head>
-<body>
+<body onload="buildHtmlTable()">
 <div class="btn-group dropup extMainMenu">
   <button type="button" class="btn dropdown-toggle roundButton viewerMainMenuButton" data-toggle="dropdown">
      <i class="fa fa-ellipsis-v fa-2x"></i>
@@ -47,7 +47,7 @@
       <i class="fa fa-comment fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:about"></span>
     </a></li>
     <li><a id="exifButton" data-toggle="modal" data-target="#exifExtensionModal">
-      <i class="fa fa-comment fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:about"></span>
+      <i class="fa fa-comment fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:exif"></span>
     </a></li>
   </ul>
 </div>
@@ -75,32 +75,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
-        <h4 class="modal-title" data-i18n="ns.viewerImage:exifTitle"></h4>
+        <a type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></a>
+        <h4 class="modal-title" id="myModalLabel2" data-i18n="ns.dialogs:exifTitle"></h4>
       </div>
-      <div class="modal-body" style="max-height: 500px; overflow: auto;">
-        <script type="text/javascript">
-          EXIF.getData(this, function() {
-            var orientation = EXIF.getTag(this, "Orientation");
-            correctOrientation(orientation);
-            var obj = {};
-            var tags = ['Make', 'Model', 'DateTime', 'Artist', 'Copyright', 'ExposureTime ',
-            'FNumber', 'ISOSpeedRatings', 'ShutterSpeedValue', 'ApertureValue', 'FocalLength'];
-            for (var tag in tags) {
-              var prop = tags[tag];
-              if (this.exifdata.hasOwnProperty(prop)) {
-                obj[prop] = this.exifdata[prop];
-              }
-            }
-            jQuery.extend(obj, this.iptcdata);
-            console.log(EXIF.pretty(this));
-            console.log(obj);
-          });
-        </script>
+      <div class="modal-body">
+      <table id="excelDataTable" border="1" style="th{font-weight: bold;}">
+      </table>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true"><i class="fa fa-check fa-lg"></i>
-        </button>
+        <button class="btn pull-left" id="exifDialogBack" title="Go Back"><i class="fa fa-arrow-left fa-lg"></i></button>
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true"><i class="fa fa-check fa-lg"></i></button>
       </div>
     </div>
   </div>
