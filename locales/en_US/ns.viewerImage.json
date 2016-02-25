@@ -7,5 +7,7 @@
     "print": "Print",
     "about": "About",
     "aboutTitle": "About ViewerImage",
+    "exif": "Exif",
+    "exifTitle": "Exif Data",
     "-": "-"
 }
