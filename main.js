@@ -1,6 +1,5 @@
 /* Copyright (c) 2013-2016 The TagSpaces Authors.
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
-
 /* global define, EXIF */
 "use strict";
 
@@ -25,8 +24,7 @@ $(document).ready(function() {
   }
 
   var $imgViewer = $("#imgViewer");
-
-  var myList;
+  var exifObj;
 
   $("#imageContent")
     .attr("src", filePath)
@@ -39,59 +37,66 @@ $(document).ready(function() {
           var orientation = EXIF.getTag(this, "Orientation");
           correctOrientation(orientation);
           //console.log(EXIF.pretty(this));
-          var obj = {};
+          exifObj = {};
           var tags = ['Make', 'Model', 'DateTime', 'Artist', 'Copyright', 'ExposureTime ', 'FNumber', 'ISOSpeedRatings', 'ShutterSpeedValue', 'ApertureValue', 'FocalLength'];
           for (var tag in tags) {
             var prop = tags[tag];
             if (this.exifdata.hasOwnProperty(prop)) {
-              obj[prop] = this.exifdata[prop];
+              exifObj[prop] = this.exifdata[prop];
             }
           }
-          jQuery.extend(obj, this.iptcdata);
-          myList = JSON.stringify(obj);
+          jQuery.extend(exifObj, this.iptcdata);
+          //  exifObj = JSON.stringify(exifObj);
+          for (var key in exifObj) {
+            if (exifObj.hasOwnProperty(key)) {
+              $("#excelDataTable").append(key + " -> " + exifObj[key] + "<br>");
+            }
+          }
 
         });
       }
     });
 
-    $('#exifExtensionModal').on('shown.bs.modal', function () {
+  $('#exifExtensionModal').on('shown.bs.modal', function() {
     //  document.write("EXIF Object" + JSON.stringify(obj));
-      buildHtmlTable();
-    });
+    buildHtmlTable();
+  });
 
-   function buildHtmlTable() {
-       var columns = addAllColumnHeaders(myList);
+  function buildHtmlTable() {
+    var columns = addAllColumnHeaders(exifObj);
 
-       for (var i = 0 ; i < myList.length ; i++) {
-           var row$ = $('<tr/>');
-           for (var colIndex = 0 ; colIndex < columns.length ; colIndex++) {
-               var cellValue = myList[i][columns[colIndex]];
+    for (var i = 0; i < exifObj.length; i++) {
+      var row$ = $('<tr/>');
+      for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+        var cellValue = exifObj[i][columns[colIndex]];
 
-               if (cellValue === null) { cellValue = ""; }
+        if (cellValue === null) {
+          cellValue = "";
+        }
 
-               row$.append($('<td/>').html(cellValue));
-           }
-           $("#excelDataTable").append(row$);
-       }
-   }
+        row$.append($('<td/>').html(cellValue));
+      }
+      $("#excelDataTable").append(row$);
+    }
+  }
 
- function addAllColumnHeaders(myList) {
-     var columnSet = [];
-     var headerTr$ = $('<tr/>');
+  function addAllColumnHeaders(exifObj) {
+    var columnSet = [];
+    var headerTr$ = $('<tr/>');
 
-     for (var i = 0 ; i < myList.length ; i++) {
-         var rowHash = myList[i];
-         for (var key in rowHash) {
-             if ($.inArray(key, columnSet) == -1){
-                 columnSet.push(key);
-                 headerTr$.append($('<th/>').html(key));
-             }
-         }
-     }
-     $("#excelDataTable").append(headerTr$);
+    for (var i = 0; i < exifObj.length; i++) {
+      var rowHash = exifObj[i];
+      for (var key in rowHash) {
+        if ($.inArray(key, columnSet) == -1) {
+          columnSet.push(key);
+          headerTr$.append($('<th/>').html(key));
+        }
+      }
+    }
+    $("#excelDataTable").append(headerTr$);
 
-     return columnSet;
- }
+    return columnSet;
+  }
 
   $imgViewer
     .panzoom({
@@ -197,7 +202,9 @@ $(document).ready(function() {
 
   // Init internationalization
   $.i18n.init({
-    ns: {namespaces: ['ns.viewerImage']},
+    ns: {
+      namespaces: ['ns.viewerImage']
+    },
     debug: true,
     fallbackLng: 'en_US'
   }, function() {
