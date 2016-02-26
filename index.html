@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="../../assets/tagspaces.css"/>
   <link rel="stylesheet" href="extension.css"/>
 </head>
-<body onload="buildHtmlTable()">
+<body>
 <div class="btn-group dropup extMainMenu">
   <button type="button" class="btn dropdown-toggle roundButton viewerMainMenuButton" data-toggle="dropdown">
      <i class="fa fa-ellipsis-v fa-2x"></i>
@@ -76,11 +76,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <a type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></a>
-        <h4 class="modal-title" id="myModalLabel2" data-i18n="ns.dialogs:exifTitle"></h4>
+        <h4 class="modal-title" id="myModalLabel2" data-i18n="ns.viewerImage:exifTitle"></h4>
       </div>
       <div class="modal-body">
-      <table id="excelDataTable" border="1" style="th{font-weight: bold;}">
-      </table>
+      <table id="excelDataTable"></table>
       </div>
       <div class="modal-footer">
         <button class="btn pull-left" id="exifDialogBack" title="Go Back"><i class="fa fa-arrow-left fa-lg"></i></button>

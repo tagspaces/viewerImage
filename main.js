@@ -26,6 +26,8 @@ $(document).ready(function() {
 
   var $imgViewer = $("#imgViewer");
 
+  var myList;
+
   $("#imageContent")
     .attr("src", filePath)
     .bind("load", function() {
@@ -46,31 +48,34 @@ $(document).ready(function() {
             }
           }
           jQuery.extend(obj, this.iptcdata);
-          $('#exifExtensionModal').on('shown.bs.modal', function () {
-          //  document.write("EXIF Object" + JSON.stringify(obj));
-          var myList = JSON.stringify(obj);
-    // Builds the HTML Table out of myList json data from Ivy restful service.
- function buildHtmlTable() {
-     var columns = addAllColumnHeaders(myList);
+          myList = JSON.stringify(obj);
 
-     for (var i = 0 ; i < myList.length ; i++) {
-         var row$ = $('<tr/>');
-         for (var colIndex = 0 ; colIndex < columns.length ; colIndex++) {
-             var cellValue = myList[i][columns[colIndex]];
+        });
+      }
+    });
 
-             if (cellValue == null) { cellValue = ""; }
+    $('#exifExtensionModal').on('shown.bs.modal', function () {
+    //  document.write("EXIF Object" + JSON.stringify(obj));
+      buildHtmlTable();
+    });
 
-             row$.append($('<td/>').html(cellValue));
-         }
-         $("#excelDataTable").append(row$);
-     }
- }
+   function buildHtmlTable() {
+       var columns = addAllColumnHeaders(myList);
 
- // Adds a header row to the table and returns the set of columns.
- // Need to do union of keys from all records as some records may not contain
- // all records
- function addAllColumnHeaders(myList)
- {
+       for (var i = 0 ; i < myList.length ; i++) {
+           var row$ = $('<tr/>');
+           for (var colIndex = 0 ; colIndex < columns.length ; colIndex++) {
+               var cellValue = myList[i][columns[colIndex]];
+
+               if (cellValue === null) { cellValue = ""; }
+
+               row$.append($('<td/>').html(cellValue));
+           }
+           $("#excelDataTable").append(row$);
+       }
+   }
+
+ function addAllColumnHeaders(myList) {
      var columnSet = [];
      var headerTr$ = $('<tr/>');
 
@@ -87,10 +92,6 @@ $(document).ready(function() {
 
      return columnSet;
  }
-          });
-        });
-      }
-    });
 
   $imgViewer
     .panzoom({
