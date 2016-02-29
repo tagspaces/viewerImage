@@ -48,7 +48,7 @@ $(document).ready(function() {
           jQuery.extend(exifObj, this.iptcdata);
           //  exifObj = JSON.stringify(exifObj);
           for (var key in exifObj) {
-            if (exifObj.hasOwnProperty(key)) {
+            if (exifObj.hasOwnProperty(key) && exifObj[key].length != 0) {
               $("#excelDataTable").append(key + " -> " + exifObj[key] + "<br>");
             }
           }
