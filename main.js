@@ -46,56 +46,26 @@ $(document).ready(function() {
             }
           }
           jQuery.extend(exifObj, this.iptcdata);
-          //  exifObj = JSON.stringify(exifObj);
-          for (var key in exifObj) {
-            if (exifObj.hasOwnProperty(key) && exifObj[key].length != 0) {
-              $("#excelDataTable").append(key + " -> " + exifObj[key] + "<br>");
-            }
+          if(!jQuery.isEmptyObject(exifObj)) {
+            $("#exifButton").parent().show();
+            printEXIF();
           }
-
         });
       }
     });
 
-  $('#exifExtensionModal').on('shown.bs.modal', function() {
-    //  document.write("EXIF Object" + JSON.stringify(obj));
-    buildHtmlTable();
-  });
-
-  function buildHtmlTable() {
-    var columns = addAllColumnHeaders(exifObj);
-
-    for (var i = 0; i < exifObj.length; i++) {
-      var row$ = $('<tr/>');
-      for (var colIndex = 0; colIndex < columns.length; colIndex++) {
-        var cellValue = exifObj[i][columns[colIndex]];
-
-        if (cellValue === null) {
-          cellValue = "";
-        }
-
-        row$.append($('<td/>').html(cellValue));
-      }
-      $("#excelDataTable").append(row$);
-    }
-  }
-
-  function addAllColumnHeaders(exifObj) {
-    var columnSet = [];
-    var headerTr$ = $('<tr/>');
-
-    for (var i = 0; i < exifObj.length; i++) {
-      var rowHash = exifObj[i];
-      for (var key in rowHash) {
-        if ($.inArray(key, columnSet) == -1) {
-          columnSet.push(key);
-          headerTr$.append($('<th/>').html(key));
-        }
+  function printEXIF() {
+    var $exifRow = $("#exifRow").clone(); // Preparing the template
+    var $exifTableBody = $("#exifTableBody");
+    $exifTableBody.empty();
+    for (var key in exifObj) {
+      if (exifObj.hasOwnProperty(key) && exifObj[key].length !== 0) {
+        $exifRow.find("th").text(key);
+        $exifRow.find("td").text(exifObj[key]);
+        $exifTableBody.append($exifRow.clone());
+        //$exifTableBody.append("<tr><th>" + key + "</th><td>" + exifObj[key] + "</td></tr>");
       }
     }
-    $("#excelDataTable").append(headerTr$);
-
-    return columnSet;
   }
 
   $imgViewer
