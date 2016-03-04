@@ -1,6 +1,5 @@
 /* Copyright (c) 2013-2016 The TagSpaces Authors.
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
-
 /* global define, EXIF */
 "use strict";
 
@@ -25,6 +24,7 @@ $(document).ready(function() {
   }
 
   var $imgViewer = $("#imgViewer");
+  var exifObj;
 
   $("#imageContent")
     .attr("src", filePath)
@@ -37,19 +37,36 @@ $(document).ready(function() {
           var orientation = EXIF.getTag(this, "Orientation");
           correctOrientation(orientation);
           //console.log(EXIF.pretty(this));
-          var obj = {};
+          exifObj = {};
           var tags = ['Make', 'Model', 'DateTime', 'Artist', 'Copyright', 'ExposureTime ', 'FNumber', 'ISOSpeedRatings', 'ShutterSpeedValue', 'ApertureValue', 'FocalLength'];
           for (var tag in tags) {
             var prop = tags[tag];
             if (this.exifdata.hasOwnProperty(prop)) {
-              obj[prop] = this.exifdata[prop];
+              exifObj[prop] = this.exifdata[prop];
             }
           }
-          jQuery.extend(obj, this.iptcdata);
-          console.log("EXIF Object" + JSON.stringify(obj));
+          jQuery.extend(exifObj, this.iptcdata);
+          if(!jQuery.isEmptyObject(exifObj)) {
+            $("#exifButton").parent().show();
+            printEXIF();
+          }
         });
       }
     });
+
+  function printEXIF() {
+    var $exifRow = $("#exifRow").clone(); // Preparing the template
+    var $exifTableBody = $("#exifTableBody");
+    $exifTableBody.empty();
+    for (var key in exifObj) {
+      if (exifObj.hasOwnProperty(key) && exifObj[key].length !== 0) {
+        $exifRow.find("th").text(key);
+        $exifRow.find("td").text(exifObj[key]);
+        $exifTableBody.append($exifRow.clone());
+        //$exifTableBody.append("<tr><th>" + key + "</th><td>" + exifObj[key] + "</td></tr>");
+      }
+    }
+  }
 
   $imgViewer
     .panzoom({
@@ -155,7 +172,9 @@ $(document).ready(function() {
 
   // Init internationalization
   $.i18n.init({
-    ns: {namespaces: ['ns.viewerImage']},
+    ns: {
+      namespaces: ['ns.viewerImage']
+    },
     debug: true,
     fallbackLng: 'en_US'
   }, function() {
