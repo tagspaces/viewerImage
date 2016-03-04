@@ -46,7 +46,7 @@ $(document).ready(function() {
             }
           }
           jQuery.extend(exifObj, this.iptcdata);
-          if(!jQuery.isEmptyObject(exifObj)) {
+          if (!jQuery.isEmptyObject(exifObj)) {
             $("#exifButton").parent().show();
             printEXIF();
           }
