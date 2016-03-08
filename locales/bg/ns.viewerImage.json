@@ -1,11 +1,13 @@
 {
-    "zoomOut": "Zoom Out",
-    "zoomIn": "Zoom In",
-    "zoomReset": "Zoom Reset",
-    "rotateRight": "Rotate Right",
-    "rotateLeft": "Rotate Left",
-    "print": "Print",
-    "about": "About",
-    "aboutTitle": "About ViewerImage",
+    "zoomOut": "Отдалечаване",
+    "zoomIn": "Приближаване",
+    "zoomReset": "Възстановяване на приближаването",
+    "rotateRight": "Завърти надясно",
+    "rotateLeft": "Завърти наляво",
+    "print": "Принтирай",
+    "about": "Относно",
+    "aboutTitle": "За ViewerImage",
+    "exif": "Покажи Exif & IPTC данните",
+    "exifTitle": "Exif и IPTC данните за снимката",
     "-": "-"
 }

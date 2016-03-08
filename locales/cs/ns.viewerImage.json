@@ -7,5 +7,7 @@
     "print": "Tisknout",
     "about": "O ViewerImage",
     "aboutTitle": "O ViewerImage",
+    "exif": "Show Exif & IPTC",
+    "exifTitle": "Exif And IPTC Image Data",
     "-": "-"
 }

@@ -7,5 +7,7 @@
     "print": "Imprimer",
     "about": "A propos",
     "aboutTitle": "A propos de la visionneuse d'images",
+    "exif": "Show Exif & IPTC",
+    "exifTitle": "Exif And IPTC Image Data",
     "-": "-"
 }

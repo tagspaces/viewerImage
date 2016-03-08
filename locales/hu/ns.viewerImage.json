@@ -7,5 +7,7 @@
     "print": "Nyomtatás",
     "about": "A programról",
     "aboutTitle": "A ViewerImageről",
+    "exif": "Exif és IPTC megjelenítése",
+    "exifTitle": "Exif és IPTC kép infó",
     "-": "-"
 }

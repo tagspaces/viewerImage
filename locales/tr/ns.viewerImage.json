@@ -7,5 +7,7 @@
     "print": "Yazdır",
     "about": "Hakkında",
     "aboutTitle": "ViewerImage Hakkında",
+    "exif": "Show Exif & IPTC",
+    "exifTitle": "Exif And IPTC Image Data",
     "-": "-"
 }

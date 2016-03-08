@@ -7,5 +7,7 @@
     "print": "打印",
     "about": "关于",
     "aboutTitle": "关于ViewerImage",
+    "exif": "Show Exif & IPTC",
+    "exifTitle": "Exif And IPTC Image Data",
     "-": "-"
 }
