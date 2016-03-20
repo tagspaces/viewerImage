@@ -6,11 +6,11 @@
   <script type="text/javascript" src="../../libs/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="../../libs/bootstrap/dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../../libs/i18next/i18next.min.js"></script>
+  <script type="text/javascript" src="../../libs/nanobar/nanobar.min.js"></script>
   <script type="text/javascript" src="libs/jquery.panzoom/dist/jquery.panzoom.min.js"></script>
   <!--script type="text/javascript" src="libs/jquery-mousewheel/jquery.mousewheel.min.js"></script-->
   <script type="text/javascript" src="libs/exif-js/exif.js"></script>
   <script type="text/javascript" src="main.js"></script>
-  <link rel="stylesheet" href="../../assets/tagspaces.css"/>
   <link rel="stylesheet" href="extension.css"/>
 </head>
 <body>
@@ -52,6 +52,9 @@
   </ul>
 </div>
 <div id="imgViewer">
+  <div id="nanoBar" class="progress-nanobar" >
+    <div class="progress-nanobar-loading"></div>
+  </div>
   <img id="imageContent">
 </div>
 <div class="modal" id="aboutExtensionModal" tabindex="-1" role="dialog" aria-hidden="true">

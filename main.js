@@ -181,4 +181,28 @@ $(document).ready(function() {
     $('[data-i18n]').i18n();
   });
 
+  // Nano progressbar
+  $(function () {
+    var options = {
+      bg: '#1DD19F', //'#42BEDB', // (optional) background css property, '#000' by default
+      // leave target blank for global nanobar
+      target: document.getElementById('nanoBar'), //(optional) Where to put the progress bar, nanobar will be fixed to top of document if target is null
+      // id for new nanobar
+      id: 'nanoBar' // (optional) id for nanobar div
+    };
+    var nanoBar = new Nanobar(options);
+    var pct = 0;
+    $(document).ajaxSend(function () {
+      pct += 0.1;
+      // move bar
+      nanobar.go(pct);
+      if (pct > 100.0) {
+        pct = 0.0;
+      }
+    }).ajaxComplete(function () {
+      // Finish progress bar
+      nanoBar.go(100);
+    });
+  });
+
 });
