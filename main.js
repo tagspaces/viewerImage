@@ -26,6 +26,11 @@ $(document).ready(function() {
   var $imgViewer = $("#imgViewer");
   var exifObj;
 
+
+  $('#aboutExtensionModal').on('show.bs.modal', function () {
+      $("#aboutExtensionModal iframe").attr("src", "http://tagspaces.org/extensions/viewerImage/");
+  })
+
   $("#imageContent")
     .attr("src", filePath)
     .bind("load", function() {
