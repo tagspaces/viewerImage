@@ -27,8 +27,8 @@ $(document).ready(function() {
   var exifObj;
 
 
-  $('#aboutExtensionModal').on('show.bs.modal', function () {
-      $("#aboutExtensionModal iframe").attr("src", "http://tagspaces.org/extensions/viewerImage/");
+  $('#aboutExtensionModal').on('show.bs.modal', function() {
+    $("#aboutExtensionModal iframe").attr("src", "http://tagspaces.org/extensions/viewerImage/");
   });
 
   $("#imageContent")
