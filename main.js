@@ -29,7 +29,7 @@ $(document).ready(function() {
 
   $('#aboutExtensionModal').on('show.bs.modal', function () {
       $("#aboutExtensionModal iframe").attr("src", "http://tagspaces.org/extensions/viewerImage/");
-  })
+  });
 
   $("#imageContent")
     .attr("src", filePath)
