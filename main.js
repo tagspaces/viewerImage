@@ -28,8 +28,26 @@ $(document).ready(function() {
 
 
   $('#aboutExtensionModal').on('show.bs.modal', function() {
-    $("#aboutExtensionModal iframe").attr("src", "http://tagspaces.org/extensions/viewerImage/");
+    $.ajax({
+      url: 'README.md',
+      type: 'GET'
+    })
+    .done(function(mdData) {
+      //console.log("DATA: " + mdData);
+      $("#aboutExtensionModal .modal-body").html(marked(mdData));
+    })
+    .fail(function(data) {
+      console.warn("Loading file failed " + data);
+    });
   });
+
+  function includeJavascript(filePath) {
+     var head = document.getElementsByTagName('head')[0];
+     var script = document.createElement('script');
+     script.src = filePath;
+     script.type = 'text/javascript';
+     head.appendChild(script)
+  }
 
   $("#imageContent")
     .attr("src", filePath)
