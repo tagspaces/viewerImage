@@ -1,6 +1,7 @@
 /* Copyright (c) 2013-2016 The TagSpaces Authors.
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
-/* global define, EXIF */
+
+/* globals marked, EXIF */
 "use strict";
 
 $(document).ready(function() {
@@ -40,14 +41,6 @@ $(document).ready(function() {
       console.warn("Loading file failed " + data);
     });
   });
-
-  function includeJavascript(filePath) {
-     var head = document.getElementsByTagName('head')[0];
-     var script = document.createElement('script');
-     script.src = filePath;
-     script.type = 'text/javascript';
-     head.appendChild(script)
-  }
 
   $("#imageContent")
     .attr("src", filePath)
