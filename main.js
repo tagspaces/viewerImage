@@ -24,6 +24,10 @@ $(document).ready(function() {
     filePath = "file://" + filePath;
   }
 
+  $(document).on('drop dragend dragenter dragover', function(event) {
+    event.preventDefault();
+  });
+
   var $imgViewer = $("#imgViewer");
   var exifObj;
 
