@@ -7,7 +7,7 @@
     "print": "Печать",
     "about": "О расширении",
     "aboutTitle": "О расширении ViewerImage",
-    "exif": "Show Exif & IPTC",
-    "exifTitle": "Exif And IPTC Image Data",
+    "exif": "Показать метаданные Exif и IPTC",
+    "exifTitle": "Exif и IPTC метаданные изображения",
     "-": "-"
 }
