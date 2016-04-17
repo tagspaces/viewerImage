@@ -1,7 +1,6 @@
 /* Copyright (c) 2013-2016 The TagSpaces Authors.
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
-
-/* globals marked, EXIF */
+/* global define, EXIF */
 "use strict";
 
 $(document).ready(function() {
@@ -24,44 +23,8 @@ $(document).ready(function() {
     filePath = "file://" + filePath;
   }
 
-  $(document).on('drop dragend dragenter dragover', function(event) {
-    event.preventDefault();
-  });
-
   var $imgViewer = $("#imgViewer");
   var exifObj;
-
-
-  $('#aboutExtensionModal').on('show.bs.modal', function() {
-    $.ajax({
-      url: 'README.md',
-      type: 'GET'
-    })
-    .done(function(mdData) {
-      //console.log("DATA: " + mdData);
-      if (marked) {
-        var modalBody = $("#aboutExtensionModal .modal-body");
-        modalBody.html(marked(mdData, { sanitize: true }));
-        handleLinks(modalBody);
-      } else {
-        console.log("markdown to html transformer not found");
-      }  
-    })
-    .fail(function(data) {
-      console.warn("Loading file failed " + data);
-    });
-  });
-  
-  function handleLinks($element) {
-    $element.find("a[href]").each(function() {
-      var currentSrc = $(this).attr("href");
-      $(this).bind('click', function(e) {
-        e.preventDefault();
-        var msg = {command: "openLinkExternally", link : currentSrc};
-        window.parent.postMessage(JSON.stringify(msg), "*");
-      });
-    });
-  }  
 
   $("#imageContent")
     .attr("src", filePath)
@@ -218,4 +181,27 @@ $(document).ready(function() {
     $('[data-i18n]').i18n();
   });
 
+  // Nano progressbar
+  $(function () {
+    var options = {
+      bg: '#42BEDB', // (optional) background css property, '#000' by default
+      // leave target blank for global nanobar
+      target: document.getElementById('nanoBar'), //(optional) Where to put the progress bar, nanobar will be fixed to top of document if target is null
+      // id for new nanobar
+      id: 'nanoBar' // (optional) id for nanobar div
+    };
+    var nanoBar = new Nanobar(options);
+    var pct = 0;
+    $(document).ajaxSend(function () {
+      pct += 0.1;
+      // move bar
+      nanobar.go(pct);
+      if (pct > 100.0) {
+        pct = 0.0;
+      }
+    }).ajaxComplete(function () {
+      // Finish progress bar
+      nanoBar.go(100);
+    });
+  });
 });
