@@ -204,4 +204,5 @@ $(document).ready(function() {
       nanoBar.go(100);
     });
   });
+
 });
