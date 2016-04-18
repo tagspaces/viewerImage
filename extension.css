@@ -4,7 +4,6 @@
     outline: none !important;
     background-image: none;
 }
-
 @media print {
     .extMainMenu {
         display: none;
@@ -107,7 +106,7 @@ body, html {
 }
 
 #aboutExtensionModal h3 {
-    -font-size: 18px;
+    font-size: 18px;
 }
 
 #aboutExtensionModal .modal-body {
