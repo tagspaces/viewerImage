@@ -232,7 +232,7 @@ $(document).ready(function() {
     $(document).ajaxSend(function () {
       pct += 0.1;
       // move bar
-      nanobar.go(pct);
+      nanoBar.go(pct);
       if (pct > 100.0) {
         pct = 0.0;
       }
