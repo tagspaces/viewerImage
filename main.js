@@ -1,6 +1,6 @@
 /* Copyright (c) 2013-2016 The TagSpaces Authors.
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
-
+/* globals Nanobar */
 /* globals marked, EXIF */
 "use strict";
 
@@ -227,7 +227,7 @@ $(document).ready(function() {
       // id for new nanobar
       id: 'nanoBar' // (optional) id for nanobar div
     };
-    var nanoBar = new Nanobar(options);
+    var nanobar = new Nanobar(options);
     var pct = 0;
     $(document).ajaxSend(function () {
       pct += 0.1;
@@ -238,7 +238,7 @@ $(document).ready(function() {
       }
     }).ajaxComplete(function () {
       // Finish progress bar
-      nanoBar.go(100);
+      nanobar.go(100);
     });
   });
 
