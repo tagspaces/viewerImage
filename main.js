@@ -227,7 +227,7 @@ $(document).ready(function() {
       // id for new nanobar
       id: 'nanoBar' // (optional) id for nanobar div
     };
-    var nanoBar = new Nanobar(options);
+    var nanobar = new Nanobar(options);
     var pct = 0;
     $(document).ajaxSend(function () {
       pct += 0.1;
@@ -238,7 +238,7 @@ $(document).ready(function() {
       }
     }).ajaxComplete(function () {
       // Finish progress bar
-      nanoBar.go(100);
+      nanobar.go(100);
     });
   });
 
