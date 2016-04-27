@@ -219,7 +219,7 @@ $(document).ready(function() {
   });
 
   // Nano progressbar
-  $(function () {
+  $(function() {
     var options = {
       bg: '#42BEDB', // (optional) background css property, '#000' by default
       // leave target blank for global nanobar
@@ -229,14 +229,14 @@ $(document).ready(function() {
     };
     var nanobar = new Nanobar(options);
     var pct = 0;
-    $(document).ajaxSend(function () {
+    $(document).ajaxSend(function() {
       pct += 0.1;
       // move bar
       nanobar.go(pct);
       if (pct > 100.0) {
         pct = 0.0;
       }
-    }).ajaxComplete(function () {
+    }).ajaxComplete(function() {
       // Finish progress bar
       nanobar.go(100);
     });
