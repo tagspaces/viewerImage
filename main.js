@@ -190,8 +190,11 @@ $(document).ready(function() {
     $image.addClass(imageRotationClass);
   });
 
-  $("#printButton").on("click" , function() {
-    $(".dropdown-menu").dropdown('toggle');
+  $("#aboutButton").on("click", function(e) {
+    $("#aboutExtensionModal").modal({show: true});
+  });
+
+  $("#printButton").on("click", function(e) {
     window.print();
   });
 
