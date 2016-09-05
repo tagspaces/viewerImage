@@ -7,7 +7,7 @@
     "print": "プリント",
     "about": "詳細",
     "aboutTitle": "ViewerImageについて",
-    "exif": "Show Exif & IPTC",
-    "exifTitle": "Exif And IPTC Image Data",
+    "exif": "ExifとIPTCを表示",
+    "exifTitle": "ExifとIPTCの画像データ",
     "-": "-"
 }
