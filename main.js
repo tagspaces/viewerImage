@@ -85,7 +85,7 @@ $(document).ready(function() {
   $("#zoomResetButton").on('click', function(e) {
     viewer.zoomTo(1);
     viewer.scale(1);
-    viewer.rotate(0);
+    viewer.rotateTo(0);
   });
 
   $("#rotateLeftButton").on('click', function(e) {
