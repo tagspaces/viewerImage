@@ -30,60 +30,63 @@ $(document).ready(function() {
 
 
   var opt = {
-    fading: true,
-    // inline: true,
     url: filePath,
-    ready: function(e) {
-      console.log(e.type);
-    },
-    show: function(e) {
-      console.log(e.type);
-    },
-    shown: function(e) {
-      console.log(e.type);
-    },
+    movable: false,
+    // inline: true,
+    fading: true,
+    //ready: function(e) {
+    //  console.log(e.type);
+    //},
+    //show: function(e) {
+    //  console.log(e.type);
+    //},
+    //shown: function(e) {
+    //  console.log(e.type);
+    //},
     hide: function(e) {
       console.log(e.type);
     },
-    hidden: function(e) {
-      console.log(e.type);
-    },
-    view: function(e) {
-      console.log(e.type);
-    },
-    viewed: function(e) {
-      console.log(e.type);
-      // this.viewer.zoomTo(1).rotateTo(180);
-    }
+    //hidden: function(e) {
+    //  console.log(e.type);
+    //},
+    //view: function(e) {
+    //  console.log(e.type);
+    //},
+    //viewed: function(e) {
+    //  console.log(e.type);
+    //  // this.viewer.zoomTo(1).rotateTo(180);
+    //}
   };
   var viewer = new Viewer(document.getElementById('imageContent'), opt);
   console.debug(viewer);
-  $("#imageContent").attr("src" , filePath);
-  //$("#imageContent").attr("src" , filePath).bind("load" , function() {
-  //  $(this).addClass("transparentImageBackground");
-  //  $imgViewer.addClass("imgViewer");
-  //  if (filePath.toLowerCase().indexOf("jpg") === (filePath.length - 3) ||
-  //          filePath.toLowerCase().indexOf("jpeg") === (filePath.length - 4)) {
-  //    EXIF.getData(this , function() {
-  //      var orientation = EXIF.getTag(this , "Orientation");
-  //      correctOrientation(orientation);
-  //      //console.log(EXIF.pretty(this));
-  //      exifObj = {};
-  //      var tags = ['Make' , 'Model' , 'DateTime' , 'Artist' , 'Copyright' , 'ExposureTime ' , 'FNumber' , 'ISOSpeedRatings' , 'ShutterSpeedValue' , 'ApertureValue' , 'FocalLength'];
-  //      for (var tag in tags) {
-  //        var prop = tags[tag];
-  //        if (this.exifdata.hasOwnProperty(prop)) {
-  //          exifObj[prop] = this.exifdata[prop];
-  //        }
-  //      }
-  //      jQuery.extend(exifObj , this.iptcdata);
-  //      if (!jQuery.isEmptyObject(exifObj)) {
-  //        $("#exifButton").parent().show();
-  //        printEXIF();
-  //      }
-  //    });
-  //  }
-  //});
+  $(".viewer-next").hide();
+  $(".viewer-prev").hide();
+  //$("#imageContent").attr("src" , filePath);
+  $("#imageContent").attr("src" , filePath).bind("load" , function() {
+    $(this).addClass("transparentImageBackground");
+    $imgViewer.addClass("imgViewer");
+    if (filePath.toLowerCase().indexOf("jpg") === (filePath.length - 3) ||
+            filePath.toLowerCase().indexOf("jpeg") === (filePath.length - 4)) {
+      EXIF.getData(this , function() {
+        var orientation = EXIF.getTag(this , "Orientation");
+        correctOrientation(orientation);
+        //console.log(EXIF.pretty(this));
+        exifObj = {};
+        var tags = ['Make' , 'Model' , 'DateTime' , 'Artist' , 'Copyright' , 'ExposureTime ' , 'FNumber' , 'ISOSpeedRatings' , 'ShutterSpeedValue' , 'ApertureValue' , 'FocalLength'];
+        for (var tag in tags) {
+          var prop = tags[tag];
+          if (this.exifdata.hasOwnProperty(prop)) {
+            exifObj[prop] = this.exifdata[prop];
+          }
+        }
+        jQuery.extend(exifObj , this.iptcdata);
+        if (!jQuery.isEmptyObject(exifObj)) {
+          $("#exifButton").parent().show();
+          printEXIF();
+        }
+      });
+    }
+  });
 
   function printEXIF() {
     var $exifRow = $("#exifRow").clone(); // Preparing the template
@@ -99,25 +102,25 @@ $(document).ready(function() {
     }
   }
 
-  //$imgViewer.panzoom({
-  //  $zoomIn: $("#zoomInButton") ,
-  //  $zoomOut: $("#zoomOutButton") ,
-  //  $reset: $("#zoomResetButton") ,
-  //  minScale: 0.1 ,
-  //  maxScale: 10 ,
-  //  increment: 0.2 ,
-  //  easing: "ease-in-out" ,
-  //  contain: 'invert'
-  //}).parent().on('mousewheel.focal' , function(e) {
-  //  e.preventDefault();
-  //  var delta = e.delta || e.originalEvent.wheelDelta;
-  //  var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
-  //  $imgViewer.panzoom('zoom' , zoomOut , {
-  //    increment: 0.1 ,
-  //    focal: e ,
-  //    animate: false
-  //  });
-  //});
+  $imgViewer.panzoom({
+    $zoomIn: $("#zoomInButton") ,
+    $zoomOut: $("#zoomOutButton") ,
+    $reset: $("#zoomResetButton") ,
+    minScale: 0.1 ,
+    maxScale: 10 ,
+    increment: 0.2 ,
+    easing: "ease-in-out" ,
+    contain: 'invert'
+  }).parent().on('mousewheel.focal' , function(e) {
+    e.preventDefault();
+    var delta = e.delta || e.originalEvent.wheelDelta;
+    var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
+    $imgViewer.panzoom('zoom' , zoomOut , {
+      increment: 0.1 ,
+      focal: e ,
+      animate: false
+    });
+  });
 
   function correctOrientation(orientation) {
     var $image = $("#imageContent");
