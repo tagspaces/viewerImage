@@ -33,7 +33,7 @@ $(document).ready(function() {
     navbar: false,
     toolbar: false,
     title: false,
-    //fullscreen: false,
+    fullscreen: true,
     inline: 'inline',
     //fading: true,
     hide: function(e) {
@@ -46,6 +46,7 @@ $(document).ready(function() {
   $(".viewer-prev").css("visibility", "hidden");
 
   $("#imageContent").attr("src", filePath).bind("load", function() {
+    viewer.full();
     $(this).addClass("transparentImageBackground");
     $imgViewer.addClass("imgViewer");
     if (filePath.toLowerCase().indexOf("jpg") === (filePath.length - 3) ||
@@ -101,6 +102,7 @@ $(document).ready(function() {
   $("#flipHorizontal").on('click', function(e) {
     e.stopPropagation();
     viewer.scale(-1, 1); // Flip horizontal
+    console.debug(viewer.scale(-1, 1));
   });
 
   $("#flipVertical").on('click', function(e) {
@@ -149,7 +151,7 @@ $(document).ready(function() {
     }
     $image.addClass(imageRotationClass);
   }
-  
+
   if (isCordova) {
     $("#zoomInButton").hide();
     $("#zoomOutButton").hide();

@@ -5,6 +5,7 @@
     outline: none !important;
     background-image: none;
 }
+
 @media print {
     .extMainMenu {
         display: none;
@@ -104,3 +105,14 @@ body, html {
     position: fixed;
 }
 
+.extMainMenu {
+    z-index: 10000;
+}
+
+.modal {
+    z-index: 10002;
+}
+
+.viewer-button {
+    visibility: hidden;
+}
