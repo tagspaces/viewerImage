@@ -99,37 +99,36 @@ $(document).ready(function() {
     viewer.rotate(90);
   });
 
-  var flip;
+  var flipHorizontal, flipVertical, flipBoth;
   $("#flipHorizontal").on('click', function(e) {
     e.stopPropagation();
-    if (flip === true) {
-      flip = false;
-      viewer.scale(1); // Flip horizontal
+    if (flipHorizontal === true) {
+      flipHorizontal = false;
+      viewer.scaleX(1); // Flip horizontal
     } else {
-      flip = true;
-      viewer.scale(-1, 1); // Flip horizontal
+      flipHorizontal = true;
+      viewer.scaleX(-1); // Flip horizontal
     }
   });
 
   $("#flipVertical").on('click', function(e) {
     e.stopPropagation();
-    if (flip === true) {
-      flip = false;
-      viewer.scale(1); // Flip horizontal
+    if (flipVertical === true) {
+      flipVertical = false;
+      viewer.scaleY(1); // Flip horizontal
     } else {
-      flip = true;
-      viewer.scale(1, -1); // Flip vertical
+      flipVertical = true;
+      viewer.scaleY(-1); // Flip vertical
     }
   });
 
   $("#flipBoth").on('click', function(e) {
     e.stopPropagation();
-
-    if (flip === true) {
-      flip = false;
+    if (flipBoth === true) {
+      flipBoth = false;
       viewer.scale(1); // Flip horizontal
     } else {
-      flip = true;
+      flipBoth = true;
       viewer.scale(-1); // Flip both horizontal and vertical
     }
   });
