@@ -83,9 +83,9 @@ $(document).ready(function() {
   });
 
   $("#zoomResetButton").on('click', function(e) {
-    viewer.zoomTo(1);
-    viewer.scale(1);
     viewer.rotateTo(0);
+    viewer.zoomTo(1);
+    //viewer.scale(1);
   });
 
   $("#rotateLeftButton").on('click', function(e) {
@@ -149,53 +149,7 @@ $(document).ready(function() {
     }
     $image.addClass(imageRotationClass);
   }
-
-  $("#rotateLeftButton").on("click", function() {
-    //console.log("Rotate Left");
-    var $image = $("#imageContent");
-    $image.removeClass(imageRotationClass);
-    switch (imageRotationClass) {
-      case "":
-        imageRotationClass = "rotate270";
-        break;
-      case "rotate270":
-        imageRotationClass = "rotate180";
-        break;
-      case "rotate180":
-        imageRotationClass = "rotate90";
-        break;
-      case "rotate90":
-        imageRotationClass = "";
-        break;
-      default:
-        imageRotationClass = "";
-    }
-    $image.addClass(imageRotationClass);
-  });
-
-  $("#rotateRightButton").on("click", function() {
-    //console.log("Rotate Right");
-    var $image = $("#imageContent");
-    $image.removeClass(imageRotationClass);
-    switch (imageRotationClass) {
-      case "":
-        imageRotationClass = "rotate90";
-        break;
-      case "rotate90":
-        imageRotationClass = "rotate180";
-        break;
-      case "rotate180":
-        imageRotationClass = "rotate270";
-        break;
-      case "rotate270":
-        imageRotationClass = "";
-        break;
-      default:
-        imageRotationClass = "";
-    }
-    $image.addClass(imageRotationClass);
-  });
-
+  
   if (isCordova) {
     $("#zoomInButton").hide();
     $("#zoomOutButton").hide();
