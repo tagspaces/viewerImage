@@ -89,22 +89,27 @@ $(document).ready(function() {
   });
 
   $("#rotateLeftButton").on('click', function(e) {
+    e.stopPropagation();
     viewer.rotate(-90);
   });
 
   $("#rotateRightButton").on('click', function(e) {
+    e.stopPropagation();
     viewer.rotate(90);
   });
 
   $("#flipHorizontal").on('click', function(e) {
+    e.stopPropagation();
     viewer.scale(-1, 1); // Flip horizontal
   });
 
   $("#flipVertical").on('click', function(e) {
+    e.stopPropagation();
     viewer.scale(1, -1); // Flip vertical
   });
 
   $("#flipBoth").on('click', function(e) {
+    e.stopPropagation();
     viewer.scale(-1); // Flip both horizontal and vertical
   });
 
