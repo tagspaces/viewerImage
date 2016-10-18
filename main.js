@@ -28,10 +28,11 @@ $(document).ready(function() {
   var exifObj;
 
   var opt = {
-    url: filePath,
+    //url: filePath,
     movable: true,
     navbar: false,
     toolbar: false,
+    title: false,
     //fullscreen: false,
     inline: 'inline',
     //fading: true,
@@ -71,17 +72,20 @@ $(document).ready(function() {
   });
 
   $("#imageContent").css("visibility", "hidden");
+  var offset = 0;
 
   $("#zoomInButton").on('click', function(e) {
-    viewer.zoom(1.5);
+    viewer.zoom(offset + 1);
   });
 
   $("#zoomOutButton").on('click', function(e) {
-    viewer.zoom(-1);
+    viewer.zoom(offset - 1);
   });
 
   $("#zoomResetButton").on('click', function(e) {
     viewer.zoomTo(1);
+    viewer.scale(1);
+    viewer.rotate(0);
   });
 
   $("#rotateLeftButton").on('click', function(e) {
@@ -90,6 +94,18 @@ $(document).ready(function() {
 
   $("#rotateRightButton").on('click', function(e) {
     viewer.rotate(90);
+  });
+
+  $("#flipHorizontal").on('click', function(e) {
+    viewer.scale(-1, 1); // Flip horizontal
+  });
+
+  $("#flipVertical").on('click', function(e) {
+    viewer.scale(1, -1); // Flip vertical
+  });
+
+  $("#flipBoth").on('click', function(e) {
+    viewer.scale(-1); // Flip both horizontal and vertical
   });
 
   function printEXIF() {
