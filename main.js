@@ -29,8 +29,9 @@ $(document).ready(function() {
 
   var opt = {
     url: filePath,
-    movable: false,
+    movable: true,
     navbar: false,
+    //fullscreen: false,
     inline: 'inline',
     //fading: true,
     hide: function(e) {
@@ -42,24 +43,24 @@ $(document).ready(function() {
   $(".viewer-next").css("visibility", "hidden");
   $(".viewer-prev").css("visibility", "hidden");
 
-  $("#imageContent").attr("src" , filePath).bind("load" , function() {
+  $("#imageContent").attr("src", filePath).bind("load", function() {
     $(this).addClass("transparentImageBackground");
     $imgViewer.addClass("imgViewer");
     if (filePath.toLowerCase().indexOf("jpg") === (filePath.length - 3) ||
-            filePath.toLowerCase().indexOf("jpeg") === (filePath.length - 4)) {
-      EXIF.getData(this , function() {
-        var orientation = EXIF.getTag(this , "Orientation");
+      filePath.toLowerCase().indexOf("jpeg") === (filePath.length - 4)) {
+      EXIF.getData(this, function() {
+        var orientation = EXIF.getTag(this, "Orientation");
         correctOrientation(orientation);
         //console.log(EXIF.pretty(this));
         exifObj = {};
-        var tags = ['Make' , 'Model' , 'DateTime' , 'Artist' , 'Copyright' , 'ExposureTime ' , 'FNumber' , 'ISOSpeedRatings' , 'ShutterSpeedValue' , 'ApertureValue' , 'FocalLength'];
+        var tags = ['Make', 'Model', 'DateTime', 'Artist', 'Copyright', 'ExposureTime ', 'FNumber', 'ISOSpeedRatings', 'ShutterSpeedValue', 'ApertureValue', 'FocalLength'];
         for (var tag in tags) {
           var prop = tags[tag];
           if (this.exifdata.hasOwnProperty(prop)) {
             exifObj[prop] = this.exifdata[prop];
           }
         }
-        jQuery.extend(exifObj , this.iptcdata);
+        jQuery.extend(exifObj, this.iptcdata);
         if (!jQuery.isEmptyObject(exifObj)) {
           $("#exifButton").parent().show();
           printEXIF();
@@ -69,6 +70,26 @@ $(document).ready(function() {
   });
 
   $("#imageContent").css("visibility", "hidden");
+
+  $("#zoomInButton").on('click', function(e) {
+    viewer.zoom(1.5);
+  });
+
+  $("#zoomOutButton").on('click', function(e) {
+    viewer.zoom(-1);
+  });
+
+  $("#zoomResetButton").on('click', function(e) {
+    viewer.zoomTo(1);
+  });
+
+  $("#rotateLeftButton").on('click', function(e) {
+    viewer.rotate(-90);
+  });
+
+  $("#rotateRightButton").on('click', function(e) {
+    viewer.rotate(90);
+  });
 
   function printEXIF() {
     var $exifRow = $("#exifRow").clone(); // Preparing the template
