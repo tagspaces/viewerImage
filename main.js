@@ -84,7 +84,7 @@ $(document).ready(function() {
   });
 
   $("#zoomResetButton").on('click', function(e) {
-    viewer.rotateTo(0);
+    //viewer.rotateTo(0);
     viewer.zoomTo(1);
     //viewer.scale(1);
   });
@@ -99,20 +99,39 @@ $(document).ready(function() {
     viewer.rotate(90);
   });
 
+  var flip;
   $("#flipHorizontal").on('click', function(e) {
     e.stopPropagation();
-    viewer.scale(-1, 1); // Flip horizontal
-    console.debug(viewer.scale(-1, 1));
+    if (flip === true) {
+      flip = false;
+      viewer.scale(1); // Flip horizontal
+    } else {
+      flip = true;
+      viewer.scale(-1, 1); // Flip horizontal
+    }
   });
 
   $("#flipVertical").on('click', function(e) {
     e.stopPropagation();
-    viewer.scale(1, -1); // Flip vertical
+    if (flip === true) {
+      flip = false;
+      viewer.scale(1); // Flip horizontal
+    } else {
+      flip = true;
+      viewer.scale(1, -1); // Flip vertical
+    }
   });
 
   $("#flipBoth").on('click', function(e) {
     e.stopPropagation();
-    viewer.scale(-1); // Flip both horizontal and vertical
+
+    if (flip === true) {
+      flip = false;
+      viewer.scale(1); // Flip horizontal
+    } else {
+      flip = true;
+      viewer.scale(-1); // Flip both horizontal and vertical
+    }
   });
 
   function printEXIF() {
