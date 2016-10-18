@@ -31,6 +31,7 @@ $(document).ready(function() {
     url: filePath,
     movable: true,
     navbar: false,
+    toolbar: false,
     //fullscreen: false,
     inline: 'inline',
     //fading: true,
