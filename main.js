@@ -32,7 +32,7 @@ $(document).ready(function() {
   var opt = {
     url: filePath,
     movable: false,
-    // inline: true,
+    //inline: true,
     fading: true,
     //ready: function(e) {
     //  console.log(e.type);
@@ -102,25 +102,25 @@ $(document).ready(function() {
     }
   }
 
-  $imgViewer.panzoom({
-    $zoomIn: $("#zoomInButton") ,
-    $zoomOut: $("#zoomOutButton") ,
-    $reset: $("#zoomResetButton") ,
-    minScale: 0.1 ,
-    maxScale: 10 ,
-    increment: 0.2 ,
-    easing: "ease-in-out" ,
-    contain: 'invert'
-  }).parent().on('mousewheel.focal' , function(e) {
-    e.preventDefault();
-    var delta = e.delta || e.originalEvent.wheelDelta;
-    var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
-    $imgViewer.panzoom('zoom' , zoomOut , {
-      increment: 0.1 ,
-      focal: e ,
-      animate: false
-    });
-  });
+  //$imgViewer.panzoom({
+  //  $zoomIn: $("#zoomInButton") ,
+  //  $zoomOut: $("#zoomOutButton") ,
+  //  $reset: $("#zoomResetButton") ,
+  //  minScale: 0.1 ,
+  //  maxScale: 10 ,
+  //  increment: 0.2 ,
+  //  easing: "ease-in-out" ,
+  //  contain: 'invert'
+  //}).parent().on('mousewheel.focal' , function(e) {
+  //  e.preventDefault();
+  //  var delta = e.delta || e.originalEvent.wheelDelta;
+  //  var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
+  //  $imgViewer.panzoom('zoom' , zoomOut , {
+  //    increment: 0.1 ,
+  //    focal: e ,
+  //    animate: false
+  //  });
+  //});
 
   function correctOrientation(orientation) {
     var $image = $("#imageContent");
