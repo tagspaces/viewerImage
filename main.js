@@ -14,7 +14,6 @@ $(document).ready(function() {
 
   var filePath = getParameterByName("cp");
 
-  var imageRotationClass = "";
   var isCordova = parent.isCordova;
   var isWeb = document.URL.indexOf('http') === 0;
 
@@ -43,7 +42,7 @@ $(document).ready(function() {
     console.debug(settings);
   }
 
-  //load settings for perpectiveGrid
+  //load settings for viewerSettings
   function loadExtSettings() {
     extSettings = JSON.parse(localStorage.getItem("imageViewerSettings"));
   }
@@ -67,6 +66,7 @@ $(document).ready(function() {
 
   $("#imageContent").attr("src", filePath).bind("load", function() {
     viewer.full();
+    imageViewerContainer[0].style.background = imageBackgroundColor;
     $(this).addClass("transparentImageBackground");
     $imgViewer.addClass("imgViewer");
     if (filePath.toLowerCase().indexOf("jpg") === (filePath.length - 3) ||
@@ -208,26 +208,23 @@ $(document).ready(function() {
   }
 
   function correctOrientation(orientation) {
-    var $image = $("#imageContent");
-    $image.removeClass(imageRotationClass);
     console.log("ORIENTATION: " + orientation);
     switch (orientation) {
       case 8:
-        imageRotationClass = viewer.rotate(270);
+        viewer.rotate(270);
         break;
       case 3:
-        imageRotationClass = viewer.rotate(180);
+        viewer.rotate(180);
         break;
       case 6:
-        imageRotationClass = viewer.rotate(90);
+        viewer.rotate(90);
         break;
       case 1:
-        imageRotationClass = "";
+        viewer.rotateTo(0);
         break;
       default:
-        imageRotationClass = "";
+        viewer.rotateTo(0);
     }
-    $image.addClass(imageRotationClass);
   }
 
   if (isCordova) {
