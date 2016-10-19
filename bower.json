@@ -5,7 +5,7 @@
   "type": "viewer",
   "version": "1.0.0",
   "dependencies": {
-    "viewerjs" : "git+https://github.com/fengyuanchen/viewerjs#v0.5.0"
+    "viewerjs" : "git+https://github.com/fengyuanchen/viewerjs#fee686e607919856bc95ff09abe2e183d1f4ff28"
   },
   "devDependencies": {},
   "authors": [
