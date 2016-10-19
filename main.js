@@ -26,7 +26,7 @@ $(document).ready(function() {
   var $imgViewer = $("#imageContainer");
   var exifObj;
 
-  var extSettings, imageBackgroundColor;
+  var extSettings, imageBackgroundColor = "#000000";
   loadExtSettings();
 
   if (extSettings && extSettings.imageBackgroundColor) {
