@@ -211,7 +211,7 @@ $(document).ready(function() {
     console.log("ORIENTATION: " + orientation);
     switch (orientation) {
       case 8:
-        viewer.rotate(270);
+        viewer.rotate(-90);
         break;
       case 3:
         viewer.rotate(180);
@@ -228,8 +228,6 @@ $(document).ready(function() {
   }
 
   if (isCordova) {
-    $("#zoomInButton").hide();
-    $("#zoomOutButton").hide();
     $("#printButton").hide();
   }
 
