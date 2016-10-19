@@ -24,7 +24,7 @@ $(document).ready(function() {
     filePath = "file://" + filePath;
   }
 
-  var $imgViewer = $("#htmlContent");
+  var $imgViewer = $("#imageContainer");
   var exifObj;
 
   var opt = {
@@ -41,7 +41,6 @@ $(document).ready(function() {
     }
   };
   var viewer = new Viewer(document.getElementById('imageContent'), opt);
-  console.debug(viewer);
   $(".viewer-next").css("visibility", "hidden");
   $(".viewer-prev").css("visibility", "hidden");
 
@@ -89,6 +88,10 @@ $(document).ready(function() {
     //viewer.scale(1);
   });
 
+  $("#fitToScreen").on('click', function(e) {
+    viewer.reset();
+  });
+
   $("#rotateLeftButton").on('click', function(e) {
     e.stopPropagation();
     viewer.rotate(-90);
@@ -99,7 +102,7 @@ $(document).ready(function() {
     viewer.rotate(90);
   });
 
-  var flipHorizontal, flipVertical, flipBoth;
+  var flipHorizontal, flipVertical, flipBoth, flipColor;
   $("#flipHorizontal").on('click', function(e) {
     e.stopPropagation();
     if (flipHorizontal === true) {
@@ -133,6 +136,34 @@ $(document).ready(function() {
     }
   });
 
+  var imageViewerContainer = document.getElementsByClassName("viewer-container");
+
+  $("#whiteBackgroundColor").on('click', function(e) {
+    e.stopPropagation();
+    imageViewerContainer[0].style.background = "#ffffff";
+  });
+
+  $("#blackBackgroundColor").on('click', function(e) {
+    e.stopPropagation();
+    imageViewerContainer[0].style.background = "#000000";
+  });
+
+  $("#sepiaBackgroundColor").on('click', function(e) {
+    e.stopPropagation();
+    imageViewerContainer[0].style.background = "#f4ecd8";
+  });
+
+  $("#flipBlackAndWhiteColor").on('click', function(e) {
+    e.stopPropagation();
+    if (flipColor) {
+      flipColor = false;
+      imageViewerContainer[0].style.background = "#000000";
+    } else {
+      flipColor = true;
+      imageViewerContainer[0].style.background = "repeating-linear-gradient(45deg, #d5d5d5, #d5d5d5 10px, #a7a7a7 10px, #a7a7a7 20px)";
+    }
+  });
+
   function printEXIF() {
     var $exifRow = $("#exifRow").clone(); // Preparing the template
     var $exifTableBody = $("#exifTableBody");
@@ -153,13 +184,13 @@ $(document).ready(function() {
     console.log("ORIENTATION: " + orientation);
     switch (orientation) {
       case 8:
-        imageRotationClass = "rotate270";
+        imageRotationClass = viewer.rotate(270);
         break;
       case 3:
-        imageRotationClass = "rotate180";
+        imageRotationClass = viewer.rotate(180);
         break;
       case 6:
-        imageRotationClass = "rotate90";
+        imageRotationClass = viewer.rotate(90);
         break;
       case 1:
         imageRotationClass = "";

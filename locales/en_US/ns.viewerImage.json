@@ -12,5 +12,10 @@
     "aboutTitle": "About ViewerImage",
     "exif": "Show Exif & IPTC",
     "exifTitle": "Exif And IPTC Image Data",
+    "whiteBackgroundColor": "White Background",
+    "blackBackgroundColor": "Black Background",
+    "sepiaBackgroundColor": "Sepia Background",
+    "fitToScreen": "Fit To Screen",
+    "flipBlackAndWhiteColor": "Black&White",
     "-": "-"
 }

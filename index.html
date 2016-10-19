@@ -34,6 +34,9 @@
     <li><a id="zoomResetButton">
       <i class="fa fa-search fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:zoomReset"></span>
     </a></li>
+    <li><a id="fitToScreen">
+      <i class="fa fa-search fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:fitToScreen"></span>
+    </a></li>
     <li class="divider"></li>
     <li><a id="rotateRightButton">
       <i class="fa fa-rotate-right fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:rotateRight"></span>
@@ -48,7 +51,21 @@
       <i class="fa fa-arrows-v fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:flipVertical"></span>
     </a></li>
     <li><a id="flipBoth">
-      <i class="fa fa-arrows-alt fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:flipBoth"></span>
+      <i class="fa fa-arrows fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:flipBoth"></span>
+    </a></li>
+    <li class="divider"></li>
+    <li>
+      <div id="themeStyle">
+        <i class="fa fa-paint-brush fa-lg fa-fw"></i>&nbsp;
+        <div class="btn-group" data-toggle="buttons">
+          <a id="whiteBackgroundColor"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:whiteBackgroundColor">&nbsp;</label></a>
+          <a id="blackBackgroundColor"><label class="btn btn-black" data-i18n="[title]ns.viewerImage:blackBackgroundColor">&nbsp;</label></a>
+          <a id="sepiaBackgroundColor"><label class="btn btn-sepia" data-i18n="[title]ns.viewerImage:sepiaBackgroundColor">&nbsp;</label></a>
+        </div>
+      </div>
+    </li>
+    <li><a id="flipBlackAndWhiteColor">
+      <i class="fa fa-paint-brush fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:flipBlackAndWhiteColor"></span>
     </a></li>
     <li class="divider"></li>
     <li style="display: none;"><a id="exifButton" data-toggle="modal" data-target="#exifExtensionModal">
@@ -62,7 +79,7 @@
     </a></li>
   </ul>
 </div>
-<div id="htmlContent">
+<div id="imageContainer">
   <div id="nanoBar" class="progress-nanobar">
   </div>
   <img id="imageContent">
