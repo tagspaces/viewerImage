@@ -157,10 +157,12 @@ $(document).ready(function() {
     e.stopPropagation();
     if (flipColor) {
       flipColor = false;
-      imageViewerContainer[0].style.background = "#000000";
+      imageViewerContainer[0].style.filter = "grayscale(0%)";
+      imageViewerContainer[0].style.WebkitFilter = "grayscale(0%)";
     } else {
       flipColor = true;
-      imageViewerContainer[0].style.background = "repeating-linear-gradient(45deg, #d5d5d5, #d5d5d5 10px, #a7a7a7 10px, #a7a7a7 20px)";
+      imageViewerContainer[0].style.filter = "grayscale(100%)";
+      imageViewerContainer[0].style.WebkitFilter = "grayscale(100%)";
     }
   });
 

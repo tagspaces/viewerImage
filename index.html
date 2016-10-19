@@ -38,21 +38,25 @@
       <i class="fa fa-search fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:fitToScreen"></span>
     </a></li>
     <li class="divider"></li>
-    <li><a id="rotateRightButton">
-      <i class="fa fa-rotate-right fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:rotateRight"></span>
-    </a></li>
-    <li><a id="rotateLeftButton">
-      <i class="fa fa-rotate-left fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:rotateLeft"></span>
-    </a></li>
-    <li><a id="flipHorizontal">
-      <i class="fa fa-arrows-h fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:flipHorizontal"></span>
-    </a></li>
-    <li><a id="flipVertical">
-      <i class="fa fa-arrows-v fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:flipVertical"></span>
-    </a></li>
-    <li><a id="flipBoth">
-      <i class="fa fa-arrows fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:flipBoth"></span>
-    </a></li>
+    <li>
+      <div id="rotateButtons">
+        <i class="fa fa-rotate-right fa-lg fa-fw"></i>&nbsp;
+        <div class="btn-group" data-toggle="buttons">
+          <a id="rotateRightButton"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:rotateRight"><i class="fa fa-rotate-right fa-lg fa-fw"></i></label></a>
+          <a id="rotateLeftButton"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:rotateLeft"><i class="fa fa-rotate-left fa-lg fa-fw"></i></label></a>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div id="flipButtons">
+        <i class="fa fa-arrows fa-lg fa-fw"></i>&nbsp;
+        <div class="btn-group" data-toggle="buttons">
+          <a id="flipHorizontal"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:flipHorizontal"><i class="fa fa-arrows-h fa-lg fa-fw"></i></label></a>
+          <a id="flipVertical"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:flipVertical"><i class="fa fa-arrows-v fa-lg fa-fw"></i></label></a>
+          <!--<a id="flipBoth"><label class="btn btn-sepia" data-i18n="[title]ns.viewerImage:flipBoth"><i class="fa fa-arrows fa-lg fa-fw"></i></label></a>-->
+        </div>
+      </div>
+    </li>
     <li class="divider"></li>
     <li>
       <div id="themeStyle">
