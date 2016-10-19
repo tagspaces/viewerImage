@@ -25,22 +25,28 @@
       <button class="close">&times;</button>&nbsp;
     </li>
     <li class="divider"></li>
-    <li><a id="zoomOutButton">
-      <i class="fa fa fa-search-minus fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:zoomOut"></span>
-    </a></li>
-    <li><a id="zoomInButton">
-      <i class="fa fa-search-plus fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:zoomIn"></span>
-    </a></li>
-    <li><a id="zoomResetButton">
-      <i class="fa fa-search fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:zoomReset"></span>
-    </a></li>
-    <li><a id="fitToScreen">
-      <i class="fa fa-search fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:fitToScreen"></span>
-    </a></li>
+    <li>
+      <div id="zoomInOutButtons">
+        <i class="fa fa-search fa-lg fa-fw"></i>&nbsp;
+        <div class="btn-group" data-toggle="buttons">
+          <a id="zoomOutButton"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:zoomOut"><i class="fa fa-search-minus fa-lg fa-fw"></i></label></a>
+          <a id="zoomInButton"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:zoomIn"><i class="fa fa-search-plus fa-lg fa-fw"></i></label></a>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div id="resetButtons">
+        <i class="fa fa-search fa-lg fa-fw"></i>&nbsp;
+        <div class="btn-group" data-toggle="buttons">
+          <a id="zoomResetButton"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:zoomReset"><i class="fa fa-arrows-alt fa-lg fa-fw"></i></label></a>
+          <a id="fitToScreen"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:fitToScreen"><i class="fa fa-mail-reply fa-lg fa-fw"></i></label></a>
+        </div>
+      </div>
+    </li>
     <li class="divider"></li>
     <li>
       <div id="rotateButtons">
-        <i class="fa fa-rotate-right fa-lg fa-fw"></i>&nbsp;
+        <i class="fa fa-refresh fa-lg fa-fw"></i>&nbsp;
         <div class="btn-group" data-toggle="buttons">
           <a id="rotateRightButton"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:rotateRight"><i class="fa fa-rotate-right fa-lg fa-fw"></i></label></a>
           <a id="rotateLeftButton"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:rotateLeft"><i class="fa fa-rotate-left fa-lg fa-fw"></i></label></a>
@@ -69,7 +75,7 @@
       </div>
     </li>
     <li><a id="flipBlackAndWhiteColor">
-      <i class="fa fa-paint-brush fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:flipBlackAndWhiteColor"></span>
+      <i class="fa fa-adjust fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:flipBlackAndWhiteColor"></span>
     </a></li>
     <li class="divider"></li>
     <li style="display: none;"><a id="exifButton" data-toggle="modal" data-target="#exifExtensionModal">

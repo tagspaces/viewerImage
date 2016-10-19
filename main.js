@@ -27,6 +27,27 @@ $(document).ready(function() {
   var $imgViewer = $("#imageContainer");
   var exifObj;
 
+  var extSettings, imageBackgroundColor;
+  loadExtSettings();
+
+  if (extSettings && extSettings.imageBackgroundColor) {
+    imageBackgroundColor = extSettings.imageBackgroundColor;
+  }
+
+  //save settings for viewerSettings
+  function saveExtSettings() {
+    var settings = {
+      "imageBackgroundColor": imageBackgroundColor
+    };
+    localStorage.setItem('imageViewerSettings', JSON.stringify(settings));
+    console.debug(settings);
+  }
+
+  //load settings for perpectiveGrid
+  function loadExtSettings() {
+    extSettings = JSON.parse(localStorage.getItem("imageViewerSettings"));
+  }
+
   var opt = {
     //url: filePath,
     movable: true,
@@ -72,20 +93,20 @@ $(document).ready(function() {
   });
 
   $("#imageContent").css("visibility", "hidden");
-  var offset = 0;
 
+  var offset = 0;
   $("#zoomInButton").on('click', function(e) {
+    e.stopPropagation();
     viewer.zoom(offset + 1);
   });
 
   $("#zoomOutButton").on('click', function(e) {
+    e.stopPropagation();
     viewer.zoom(offset - 1);
   });
 
   $("#zoomResetButton").on('click', function(e) {
-    //viewer.rotateTo(0);
     viewer.zoomTo(1);
-    //viewer.scale(1);
   });
 
   $("#fitToScreen").on('click', function(e) {
@@ -141,16 +162,22 @@ $(document).ready(function() {
   $("#whiteBackgroundColor").on('click', function(e) {
     e.stopPropagation();
     imageViewerContainer[0].style.background = "#ffffff";
+    imageBackgroundColor = "#ffffff";
+    saveExtSettings();
   });
 
   $("#blackBackgroundColor").on('click', function(e) {
     e.stopPropagation();
     imageViewerContainer[0].style.background = "#000000";
+    imageBackgroundColor = "#000000";
+    saveExtSettings();
   });
 
   $("#sepiaBackgroundColor").on('click', function(e) {
     e.stopPropagation();
     imageViewerContainer[0].style.background = "#f4ecd8";
+    imageBackgroundColor = "#f4ecd8";
+    saveExtSettings();
   });
 
   $("#flipBlackAndWhiteColor").on('click', function(e) {

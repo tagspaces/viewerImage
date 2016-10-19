@@ -60,6 +60,18 @@ body, html {
     margin-bottom: 8px;
 }
 
+#zoomInOutButtons {
+    margin-left: 19px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+#resetButtons {
+    margin-left: 19px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
 .iconBackground {
     color: rgba(0, 0, 0, 0.8);
 }
