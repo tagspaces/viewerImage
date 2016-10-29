@@ -4,10 +4,18 @@
     "zoomReset": "Zoom Reset",
     "rotateRight": "Rotate Right",
     "rotateLeft": "Rotate Left",
+    "flipHorizontal": "Flip Horizontal",
+    "flipVertical": "Flip Vertical",
+    "flipBoth": "Flip Both",
     "print": "Print",
     "about": "About",
     "aboutTitle": "About ViewerImage",
     "exif": "Show Exif & IPTC",
     "exifTitle": "Exif And IPTC Image Data",
+    "whiteBackgroundColor": "White Background",
+    "blackBackgroundColor": "Black Background",
+    "sepiaBackgroundColor": "Sepia Background",
+    "fitToScreen": "Fit To Screen",
+    "flipBlackAndWhiteColor": "Black&White",
     "-": "-"
 }

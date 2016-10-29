@@ -12,8 +12,7 @@ A TagSpaces extension allowing you to open different kinds of image formats
 This extension thankfully relays on the following great libraries:
 
 * [exif.js](https://github.com/exif-js/exif-js) 
-* [jquery-mousewheel](https://github.com/jquery/jquery-mousewheel) 
-* [jquery.panzoom](https://github.com/timmywil/jquery.panzoom) 
+* [viewer.js](https://fengyuanchen.github.io/viewerjs/)
 
 ## Installation
 

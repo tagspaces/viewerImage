@@ -5,8 +5,7 @@
   "type": "viewer",
   "version": "1.0.0",
   "dependencies": {
-    "jquery.panzoom": "~2.0.5",
-    "jquery-mousewheel": "~3.1.13"
+    "viewerjs" : "git+https://github.com/fengyuanchen/viewerjs#fee686e607919856bc95ff09abe2e183d1f4ff28"
   },
   "devDependencies": {},
   "authors": [

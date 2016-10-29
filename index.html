@@ -8,11 +8,11 @@
   <script type="text/javascript" src="../../libs/i18next/i18next.min.js"></script>
   <script type="text/javascript" src="../../libs/marked/marked.min.js"></script>
   <script type="text/javascript" src="../../libs/nanobar/nanobar.min.js"></script>
-  <script type="text/javascript" src="libs/jquery.panzoom/dist/jquery.panzoom.min.js"></script>
-  <!--script type="text/javascript" src="libs/jquery-mousewheel/jquery.mousewheel.min.js"></script-->
   <script type="text/javascript" src="../../libs/exif-js/exif.js"></script>
   <script type="text/javascript" src="main.js"></script>
   <script type="text/javascript" src="../../libs/extCommon/common.js"></script>
+  <script src="libs/viewerjs/dist/viewer.min.js"></script>
+  <link  href="libs/viewerjs/dist/viewer.min.css" rel="stylesheet">
   <link rel="stylesheet" href="extension.css"/>
 </head>
 <body>
@@ -25,25 +25,61 @@
       <button class="close">&times;</button>&nbsp;
     </li>
     <li class="divider"></li>
-    <li><a id="zoomOutButton">
-      <i class="fa fa fa-search-minus fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:zoomOut"></span>
-    </a></li>
-    <li><a id="zoomInButton">
-      <i class="fa fa-search-plus fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:zoomIn"></span>
-    </a></li>
-    <li><a id="zoomResetButton">
-      <i class="fa fa-search fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:zoomReset"></span>
-    </a></li>
+    <li>
+      <div id="zoomInOutButtons">
+        <i class="fa fa-search fa-lg fa-fw"></i>&nbsp;
+        <div class="btn-group" data-toggle="buttons">
+          <a id="zoomOutButton"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:zoomOut"><i class="fa fa-search-minus fa-lg fa-fw"></i></label></a>
+          <a id="zoomInButton"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:zoomIn"><i class="fa fa-search-plus fa-lg fa-fw"></i></label></a>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div id="resetButtons">
+        <i class="fa fa-search fa-lg fa-fw"></i>&nbsp;
+        <div class="btn-group" data-toggle="buttons">
+          <a id="zoomResetButton"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:zoomReset"><i class="fa fa-arrows-alt fa-lg fa-fw"></i></label></a>
+          <a id="fitToScreen"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:fitToScreen"><i class="fa fa-mail-reply fa-lg fa-fw"></i></label></a>
+        </div>
+      </div>
+    </li>
     <li class="divider"></li>
-    <li><a id="rotateRightButton">
-      <i class="fa fa-rotate-right fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:rotateRight"></span>
-    </a></li>
-    <li><a id="rotateLeftButton">
-      <i class="fa fa-rotate-left fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:rotateLeft"></span>
+    <li>
+      <div id="rotateButtons">
+        <i class="fa fa-refresh fa-lg fa-fw"></i>&nbsp;
+        <div class="btn-group" data-toggle="buttons">
+          <a id="rotateRightButton"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:rotateRight"><i class="fa fa-rotate-right fa-lg fa-fw"></i></label></a>
+          <a id="rotateLeftButton"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:rotateLeft"><i class="fa fa-rotate-left fa-lg fa-fw"></i></label></a>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div id="flipButtons">
+        <i class="fa fa-arrows fa-lg fa-fw"></i>&nbsp;
+        <div class="btn-group" data-toggle="buttons">
+          <a id="flipHorizontal"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:flipHorizontal"><i class="fa fa-arrows-h fa-lg fa-fw"></i></label></a>
+          <a id="flipVertical"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:flipVertical"><i class="fa fa-arrows-v fa-lg fa-fw"></i></label></a>
+          <!--<a id="flipBoth"><label class="btn btn-sepia" data-i18n="[title]ns.viewerImage:flipBoth"><i class="fa fa-arrows fa-lg fa-fw"></i></label></a>-->
+        </div>
+      </div>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <div id="themeStyle">
+        <i class="fa fa-paint-brush fa-lg fa-fw"></i>&nbsp;
+        <div class="btn-group" data-toggle="buttons">
+          <a id="whiteBackgroundColor"><label class="btn btn-secondary" data-i18n="[title]ns.viewerImage:whiteBackgroundColor">&nbsp;</label></a>
+          <a id="blackBackgroundColor"><label class="btn btn-black" data-i18n="[title]ns.viewerImage:blackBackgroundColor">&nbsp;</label></a>
+          <a id="sepiaBackgroundColor"><label class="btn btn-sepia" data-i18n="[title]ns.viewerImage:sepiaBackgroundColor">&nbsp;</label></a>
+        </div>
+      </div>
+    </li>
+    <li><a id="flipBlackAndWhiteColor">
+      <i class="fa fa-adjust fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:flipBlackAndWhiteColor"></span>
     </a></li>
     <li class="divider"></li>
     <li style="display: none;"><a id="exifButton" data-toggle="modal" data-target="#exifExtensionModal">
-      <i class="fa fa-comment fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:exif"></span>
+      <i class="fa fa-info-circle fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:exif"></span>
     </a></li>
     <li><a id="printButton">
         <i class="fa fa-print fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerImage:print"></span>
@@ -53,7 +89,7 @@
     </a></li>
   </ul>
 </div>
-<div id="htmlContent">
+<div id="imageContainer">
   <div id="nanoBar" class="progress-nanobar">
   </div>
   <img id="imageContent">
