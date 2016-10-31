@@ -61,8 +61,6 @@ $(document).ready(function() {
     }
   };
   var viewer = new Viewer(document.getElementById('imageContent'), opt);
-  $(".viewer-next").css("visibility", "hidden");
-  $(".viewer-prev").css("visibility", "hidden");
 
   $("#imageContent").attr("src", filePath).bind("load", function() {
     viewer.full();
