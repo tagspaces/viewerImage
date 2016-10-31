@@ -60,11 +60,10 @@ $(document).ready(function() {
       console.log(e.type);
     }
   };
-  var viewer = new Viewer(document.getElementById('imageContent'), opt);
-  $(".viewer-next").css("visibility", "hidden");
-  $(".viewer-prev").css("visibility", "hidden");
+  var viewer;
 
   $("#imageContent").attr("src", filePath).bind("load", function() {
+    viewer = new Viewer(document.getElementById('imageContent'), opt);
     viewer.full();
     imageViewerContainer[0].style.background = imageBackgroundColor;
     $(this).addClass("transparentImageBackground");
