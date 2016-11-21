@@ -4,10 +4,16 @@
     "zoomReset": "Rozmiar oryginalny",
     "rotateRight": "Obróć w prawo",
     "rotateLeft": "Obróć w lewo",
+    "flipHorizontal": "Flip Horizontal",
+    "flipVertical": "Flip Vertical",
+    "flipBoth": "Flip Both",
     "print": "Drukuj",
     "about": "O programie",
     "aboutTitle": "Informacje o programie ViewerImage",
     "exif": "Pokaż dane Exif i IPTC",
     "exifTitle": "Dane Exif i IPTC",
+    "changeBackgroundColor": "Change Background Color",
+    "fitToScreen": "Fit To Screen",
+    "toggleBlackAndWhiteColor": "Toggle Black&White",
     "-": "-"
 }

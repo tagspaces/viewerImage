@@ -4,10 +4,16 @@
     "zoomReset": "Taille normale",
     "rotateRight": "Pivoter à droite",
     "rotateLeft": "Pivoter à gauche",
+    "flipHorizontal": "Flip Horizontal",
+    "flipVertical": "Flip Vertical",
+    "flipBoth": "Flip Both",
     "print": "Imprimer",
     "about": "A propos",
     "aboutTitle": "A propos de la visionneuse d'images",
     "exif": "Voir les données Exif et IPTC",
     "exifTitle": "Données Exif et IPTC des images",
+    "changeBackgroundColor": "Change Background Color",
+    "fitToScreen": "Fit To Screen",
+    "toggleBlackAndWhiteColor": "Toggle Black&White",
     "-": "-"
 }

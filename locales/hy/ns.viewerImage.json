@@ -4,10 +4,16 @@
     "zoomReset": "Սկզբնադիր խոշորացում",
     "rotateRight": "Պտտել աջ",
     "rotateLeft": "Պտտել ձախ",
+    "flipHorizontal": "Flip Horizontal",
+    "flipVertical": "Flip Vertical",
+    "flipBoth": "Flip Both",
     "print": "Տպել",
     "about": "Տեղեկություն",
     "aboutTitle": "ViewerImage-ի մասին",
     "exif": "Ցույց տալ Exif-ն ու IPTC-ն",
     "exifTitle": "Նկարի Exif և IPTC տվյալները",
+    "changeBackgroundColor": "Change Background Color",
+    "fitToScreen": "Fit To Screen",
+    "toggleBlackAndWhiteColor": "Toggle Black&White",
     "-": "-"
 }

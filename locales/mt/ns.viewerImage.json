@@ -4,10 +4,16 @@
     "zoomReset": "Irrisettja ż-'Zoom'",
     "rotateRight": "Dawwar lejn il-Lemin",
     "rotateLeft": "Dawwar lejn ix-Xellug",
+    "flipHorizontal": "Flip Horizontal",
+    "flipVertical": "Flip Vertical",
+    "flipBoth": "Flip Both",
     "print": "Istampa",
     "about": "Dwar",
     "aboutTitle": "Dwar ViewerImage",
     "exif": "Uri l-'Exif' u l-'IPTC'",
     "exifTitle": "Informazjoni tas-Stampi 'Exif' u 'IPTC'",
+    "changeBackgroundColor": "Change Background Color",
+    "fitToScreen": "Fit To Screen",
+    "toggleBlackAndWhiteColor": "Toggle Black&White",
     "-": "-"
 }

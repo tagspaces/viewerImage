@@ -4,10 +4,16 @@
     "zoomReset": "Сбросить масштаб",
     "rotateRight": "Повернуть вправо",
     "rotateLeft": "Повернуть влево",
+    "flipHorizontal": "Flip Horizontal",
+    "flipVertical": "Flip Vertical",
+    "flipBoth": "Flip Both",
     "print": "Печать",
     "about": "О расширении",
     "aboutTitle": "О расширении ViewerImage",
-    "exif": "Show Exif & IPTC",
-    "exifTitle": "Exif And IPTC Image Data",
+    "exif": "Показать метаданные Exif и IPTC",
+    "exifTitle": "Exif и IPTC метаданные изображения",
+    "changeBackgroundColor": "Изменить цвет фона",
+    "fitToScreen": "Fit To Screen",
+    "toggleBlackAndWhiteColor": "Toggle Black&White",
     "-": "-"
 }
