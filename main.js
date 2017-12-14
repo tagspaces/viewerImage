@@ -1,7 +1,6 @@
-/* Copyright (c) 2013-2016 The TagSpaces Authors.
+/* Copyright (c) 2013-present The TagSpaces Authors.
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
 
-/* globals Nanobar, marked, EXIF, Mousetrap, Viewer  */
 "use strict";
 
 $(document).ready(function() {
@@ -12,10 +11,12 @@ $(document).ready(function() {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
 
-  var filePath = getParameterByName("cp");
+  var filePath = getParameterByName("file");
 
-  var isCordova = parent.isCordova;
-  var isWeb = document.URL.indexOf('http') === 0;
+  var isWeb: (document.URL.startsWith('http') && !document.URL.startsWith('http://localhost:1212/')),
+  // isCordovaAndroid: document.URL.indexOf( 'file:///android_asset' ) === 0,
+  // isCordovaiOS: /^file:\/{3}[^\/]/i.test(window.location.href) && /ios|iphone|ipod|ipad/i.test(navigator.userAgent),
+  var isCordova: (document.URL.indexOf('file:///android_asset') === 0),
 
   if (isCordova || isWeb) {
 
@@ -231,14 +232,14 @@ $(document).ready(function() {
   }
 
   // Init internationalization
-  $.i18n.init({
-    ns: {
-      namespaces: ['ns.viewerImage']
-    },
+  i18next.init({
+    ns: {namespaces: ['ns.viewerImage']},
     debug: true,
+    lng: locale,
     fallbackLng: 'en_US'
   }, function() {
-    $('[data-i18n]').i18n();
+    jqueryI18next.init(i18next, $);
+    $('[data-i18n]').localize();
   });
 
   // Nano progressbar
