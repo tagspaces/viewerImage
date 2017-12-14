@@ -1,7 +1,8 @@
 /* Copyright (c) 2013-present The TagSpaces Authors.
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
-
 "use strict";
+
+var loadContentExternally = false;
 
 $(document).ready(function() {
   function getParameterByName(name) {
@@ -12,11 +13,12 @@ $(document).ready(function() {
   }
 
   var filePath = getParameterByName("file");
+  var locale = getParameterByName("locale");
 
-  var isWeb: (document.URL.startsWith('http') && !document.URL.startsWith('http://localhost:1212/')),
+  var isWeb = (document.URL.startsWith('http') && !document.URL.startsWith('http://localhost:1212/'));
   // isCordovaAndroid: document.URL.indexOf( 'file:///android_asset' ) === 0,
   // isCordovaiOS: /^file:\/{3}[^\/]/i.test(window.location.href) && /ios|iphone|ipod|ipad/i.test(navigator.userAgent),
-  var isCordova: (document.URL.indexOf('file:///android_asset') === 0),
+  var isCordova = (document.URL.indexOf('file:///android_asset') === 0);
 
   if (isCordova || isWeb) {
 
