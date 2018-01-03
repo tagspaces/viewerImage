@@ -10,9 +10,5 @@
     "url": "https://www.tagspaces.org"
   },
   "license": "MIT",
-  "dependencies": {
-    "viewerjs": "0.10.0",
-    "exif-js": "2.3.0",
-    "nanobar": "0.4.2"
-  }
+  "dependencies": {}
 }
