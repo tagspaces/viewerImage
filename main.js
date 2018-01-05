@@ -2,18 +2,16 @@
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
 "use strict";
 
-var loadContentExternally = false;
-
 $(document).ready(function() {
+  var filePath = getParameterByName("file");
+  var locale = getParameterByName("locale");
+
   function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
       results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
-
-  var filePath = getParameterByName("file");
-  var locale = getParameterByName("locale");
 
   var isWeb = (document.URL.startsWith('http') && !document.URL.startsWith('http://localhost:1212/'));
   // isCordovaAndroid: document.URL.indexOf( 'file:///android_asset' ) === 0,
@@ -210,7 +208,6 @@ $(document).ready(function() {
   }
 
   function correctOrientation(orientation) {
-    console.log("ORIENTATION: " + orientation);
     switch (orientation) {
       case 8:
         viewer.rotate(-90);
