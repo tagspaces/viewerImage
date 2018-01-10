@@ -7,13 +7,6 @@ $(document).ready(function() {
   var locale = getParameterByName('locale');
   initI18N(locale, 'ns.viewerImage.json');
 
-  function getParameterByName(name) {
-    name = name.replace(/[\[]/, '\\\[').replace(/[\]]/, '\\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'),
-      results = regex.exec(location.search);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-  }
-
   var isWeb = (document.URL.startsWith('http') && !document.URL.startsWith('http://localhost:1212/'));
   // isCordovaAndroid: document.URL.indexOf( 'file:///android_asset' ) === 0,
   // isCordovaiOS: /^file:\/{3}[^\/]/i.test(window.location.href) && /ios|iphone|ipod|ipad/i.test(navigator.userAgent),
