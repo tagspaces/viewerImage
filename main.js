@@ -7,11 +7,6 @@ $(document).ready(function() {
   var locale = getParameterByName('locale');
   initI18N(locale, 'ns.viewerImage.json');
 
-  var isWeb = (document.URL.startsWith('http') && !document.URL.startsWith('http://localhost:1212/'));
-  // isCordovaAndroid: document.URL.indexOf( 'file:///android_asset' ) === 0,
-  // isCordovaiOS: /^file:\/{3}[^\/]/i.test(window.location.href) && /ios|iphone|ipod|ipad/i.test(navigator.userAgent),
-  var isCordova = (document.URL.indexOf('file:///android_asset') === 0);
-
   if (isCordova || isWeb) {
 
   } else {
