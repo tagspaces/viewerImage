@@ -3,7 +3,7 @@
 'use strict';
 
 $(document).ready(function() {
-  var filePath = getParameterByName('file');
+  var filePath = getParameterByName('file'); // TODO check decodeURIComponent loading fileswith#inthe.name
   var locale = getParameterByName('locale');
   initI18N(locale, 'ns.viewerImage.json');
 
@@ -208,10 +208,10 @@ $(document).ready(function() {
         viewer.rotate(90);
         break;
       case 1:
-        viewer.rotateTo(0);
+        viewer.rotate(0);
         break;
       default:
-        viewer.rotateTo(0);
+        viewer.rotate(0);
     }
   }
 
