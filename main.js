@@ -1,10 +1,11 @@
 /* Copyright (c) 2013-present The TagSpaces Authors.
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
+/* globals initI18N, getParameterByName, $, isWeb, isCordova, Viewer, EXIF, Nanobar, jQuery */
 'use strict';
 
-$(document).ready(function() {
-  var filePath = getParameterByName('file'); // TODO check decodeURIComponent loading fileswith#inthe.name
-  var locale = getParameterByName('locale');
+$(document).ready(() => {
+  let filePath = getParameterByName('file'); // TODO check decodeURIComponent loading fileswith#inthe.name
+  const locale = getParameterByName('locale');
   initI18N(locale, 'ns.viewerImage.json');
 
   if (isCordova || isWeb) {
@@ -13,46 +14,47 @@ $(document).ready(function() {
     filePath = 'file://' + filePath;
   }
 
-  var $imgViewer = $('#imageContainer');
-  var exifObj;
+  const $imgViewer = $('#imageContainer');
+  let exifObj;
 
-  var extSettings, imageBackgroundColor = '#000000';
+  let extSettings;
+  let imageBackgroundColor = '#000000';
   loadExtSettings();
 
   if (extSettings && extSettings.imageBackgroundColor) {
     imageBackgroundColor = extSettings.imageBackgroundColor;
   }
 
-  //save settings for viewerSettings
+  // save settings for viewerSettings
   function saveExtSettings() {
-    var settings = {
-      'imageBackgroundColor': imageBackgroundColor
+    const settings = {
+      imageBackgroundColor
     };
     localStorage.setItem('imageViewerSettings', JSON.stringify(settings));
     console.debug(settings);
   }
 
-  //load settings for viewerSettings
+  // load settings for viewerSettings
   function loadExtSettings() {
     extSettings = JSON.parse(localStorage.getItem('imageViewerSettings'));
   }
 
-  var opt = {
-    //url: filePath,
+  const opt = {
+    // url: filePath,
     movable: true,
     navbar: false,
     toolbar: false,
     title: false,
     fullscreen: true,
     inline: 'inline',
-    //fading: true,
-    hide: function(e) {
+    // fading: true,
+    hide: (e) => {
       console.log(e.type);
     }
   };
-  var viewer;
+  let viewer;
 
-  $('#imageContent').attr('src', filePath).bind('load', function() {
+  $('#imageContent').attr('src', filePath).bind('load', () => {
     viewer = new Viewer(document.getElementById('imageContent'), opt);
     viewer.full();
     imageViewerContainer[0].style.background = imageBackgroundColor;
@@ -60,14 +62,14 @@ $(document).ready(function() {
     $imgViewer.addClass('imgViewer');
     if (filePath.toLowerCase().indexOf('jpg') === (filePath.length - 3) ||
       filePath.toLowerCase().indexOf('jpeg') === (filePath.length - 4)) {
-      EXIF.getData(this, function() {
-        var orientation = EXIF.getTag(this, 'Orientation');
+      EXIF.getData(this, () => {
+        const orientation = EXIF.getTag(this, 'Orientation');
         correctOrientation(orientation);
         //console.log(EXIF.pretty(this));
         exifObj = {};
-        var tags = ['Make', 'Model', 'DateTime', 'Artist', 'Copyright', 'ExposureTime ', 'FNumber', 'ISOSpeedRatings', 'ShutterSpeedValue', 'ApertureValue', 'FocalLength'];
-        for (var tag in tags) {
-          var prop = tags[tag];
+        const tags = ['Make', 'Model', 'DateTime', 'Artist', 'Copyright', 'ExposureTime ', 'FNumber', 'ISOSpeedRatings', 'ShutterSpeedValue', 'ApertureValue', 'FocalLength'];
+        for (let tag in tags) {
+          const prop = tags[tag];
           if (this.exifdata.hasOwnProperty(prop)) {
             exifObj[prop] = this.exifdata[prop];
           }
@@ -83,37 +85,40 @@ $(document).ready(function() {
 
   $('#imageContent').css('visibility', 'hidden');
 
-  var offset = 0;
-  $('#zoomInButton').on('click', function(e) {
+  const offset = 0;
+  $('#zoomInButton').on('click', (e) => {
     e.stopPropagation();
     viewer.zoom(offset + 1);
   });
 
-  $('#zoomOutButton').on('click', function(e) {
+  $('#zoomOutButton').on('click', (e) => {
     e.stopPropagation();
     viewer.zoom(offset - 1);
   });
 
-  $('#zoomResetButton').on('click', function(e) {
+  $('#zoomResetButton').on('click', () => {
     viewer.zoomTo(1);
   });
 
-  $('#fitToScreen').on('click', function(e) {
+  $('#fitToScreen').on('click', () => {
     viewer.reset();
   });
 
-  $('#rotateLeftButton').on('click', function(e) {
+  $('#rotateLeftButton').on('click', (e) => {
     e.stopPropagation();
     viewer.rotate(-90);
   });
 
-  $('#rotateRightButton').on('click', function(e) {
+  $('#rotateRightButton').on('click', (e) => {
     e.stopPropagation();
     viewer.rotate(90);
   });
 
-  var flipHorizontal, flipVertical, flipBoth, flipColor;
-  $('#flipHorizontal').on('click', function(e) {
+  let flipHorizontal;
+  let flipVertical;
+  let flipBoth;
+  let flipColor;
+  $('#flipHorizontal').on('click', (e) => {
     e.stopPropagation();
     if (flipHorizontal === true) {
       flipHorizontal = false;
@@ -124,7 +129,7 @@ $(document).ready(function() {
     }
   });
 
-  $('#flipVertical').on('click', function(e) {
+  $('#flipVertical').on('click', (e) => {
     e.stopPropagation();
     if (flipVertical === true) {
       flipVertical = false;
@@ -135,7 +140,7 @@ $(document).ready(function() {
     }
   });
 
-  $('#flipBoth').on('click', function(e) {
+  $('#flipBoth').on('click', (e) => {
     e.stopPropagation();
     if (flipBoth === true) {
       flipBoth = false;
@@ -146,30 +151,30 @@ $(document).ready(function() {
     }
   });
 
-  var imageViewerContainer = document.getElementsByClassName('viewer-container');
+  const imageViewerContainer = document.getElementsByClassName('viewer-container');
 
-  $('#whiteBackgroundColor').on('click', function(e) {
+  $('#whiteBackgroundColor').on('click', (e) => {
     e.stopPropagation();
     imageViewerContainer[0].style.background = '#ffffff';
     imageBackgroundColor = '#ffffff';
     saveExtSettings();
   });
 
-  $('#blackBackgroundColor').on('click', function(e) {
+  $('#blackBackgroundColor').on('click', (e) => {
     e.stopPropagation();
     imageViewerContainer[0].style.background = '#000000';
     imageBackgroundColor = '#000000';
     saveExtSettings();
   });
 
-  $('#sepiaBackgroundColor').on('click', function(e) {
+  $('#sepiaBackgroundColor').on('click', (e) => {
     e.stopPropagation();
     imageViewerContainer[0].style.background = '#f4ecd8';
     imageBackgroundColor = '#f4ecd8';
     saveExtSettings();
   });
 
-  $('#flipBlackAndWhiteColor').on('click', function(e) {
+  $('#flipBlackAndWhiteColor').on('click', (e) => {
     e.stopPropagation();
     if (flipColor) {
       flipColor = false;
@@ -183,15 +188,14 @@ $(document).ready(function() {
   });
 
   function printEXIF() {
-    var $exifRow = $('#exifRow').clone(); // Preparing the template
-    var $exifTableBody = $('#exifTableBody');
+    const $exifRow = $('#exifRow').clone(); // Preparing the template
+    const $exifTableBody = $('#exifTableBody');
     $exifTableBody.empty();
-    for (var key in exifObj) {
+    for (let key in exifObj) {
       if (exifObj.hasOwnProperty(key) && exifObj[key].length !== 0) {
         $exifRow.find('th').text(key);
         $exifRow.find('td').text(exifObj[key]);
         $exifTableBody.append($exifRow.clone());
-        //$exifTableBody.append('<tr><th>' + key + '</th><td>' + exifObj[key] + '</td></tr>');
       }
     }
   }
@@ -215,32 +219,30 @@ $(document).ready(function() {
     }
   }
 
-  if (isCordova) {
-    $('#printButton').hide();
-  }
+  // if (isCordova) {
+  //  $('#printButton').hide();
+  // }
 
   // Nano progressbar
-  $(function() {
-    var options = {
+  $(() => {
+    const options = {
       bg: '#42BEDB', // (optional) background css property, '#000' by default
       // leave target blank for global nanobar
-      target: document.getElementById('nanoBar'), //(optional) Where to put the progress bar, nanobar will be fixed to top of document if target is null
+      target: document.getElementById('nanoBar'), // (optional) Where to put the progress bar, nanobar will be fixed to top of document if target is null
       // id for new nanobar
       id: 'nanoBar' // (optional) id for nanobar div
     };
-    var nanobar = new Nanobar(options);
-    var pct = 0;
-    $(document).ajaxSend(function() {
+    const nanobar = new Nanobar(options);
+    let pct = 0;
+    $(document).ajaxSend(() => {
       pct += 0.1;
       // move bar
       nanobar.go(pct);
       if (pct > 100.0) {
         pct = 0.0;
       }
-    }).ajaxComplete(function() {
-      // Finish progress bar
+    }).ajaxComplete(() => {
       nanobar.go(100);
     });
   });
-
 });
