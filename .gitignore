@@ -1,4 +1,5 @@
 libs/**/Gruntfile.js
+libs/**/Cakefile
 libs/**/.npmignore
 libs/**/HELP*
 libs/**/*yml
@@ -22,3 +23,12 @@ libs/**/documentation/
 libs/**/vendor/
 libs/**/examples/
 libs/**/demos/
+libs/**/shims/
+libs/**/dist/psd.js*
+libs/**/build.sh
+libs/**/*.ts
+libs/**/*.c*
+libs/**/*.h*
+libs/**/*example*
+libs/**/post.js
+libs/**/pre.js

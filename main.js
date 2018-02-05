@@ -55,15 +55,25 @@ $(document).ready(() => {
   let viewer;
 
   if (filePath.endsWith('.tiff') || filePath.endsWith('.tiff')) {
-    const xhr = new XMLHttpRequest();
-    xhr.responseType = 'arraybuffer';
-    xhr.open('GET', filePath);
-    xhr.onload = (e) => {
-      const tiff = new Tiff({buffer: xhr.response});
-      const canvas = tiff.toCanvas();
-      $('#imageContent').attr('src', canvas.toDataURL());
-    };
-    xhr.send();
+    $.getScript('libs/tiff.js/tiff.min.js', () => {
+      const xhr = new XMLHttpRequest();
+      xhr.responseType = 'arraybuffer';
+      xhr.open('GET', filePath);
+      xhr.onload = (e) => {
+        const tiff = new Tiff({buffer: xhr.response});
+        const canvas = tiff.toCanvas();
+        $('#imageContent').attr('src', canvas.toDataURL());
+      };
+      xhr.send();
+    });
+  } else if (filePath.endsWith('.psd')) {
+    $.getScript('libs/psd/dist/psd.min.js', () => {
+      const PSD = require('psd');
+      PSD.fromURL(filePath).then((psd) => {
+        const image = psd.image.toPng();
+        $('#imageContent').attr('src', image.getAttribute('src'));
+      });
+    });
   } else {
     $('#imageContent').attr('src', filePath);
   }

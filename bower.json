@@ -8,6 +8,7 @@
     "viewerjs" : "https://github.com/fengyuanchen/viewerjs/tree/v0.10.0",
     "nanobar": "~0.4.2",
     "tiff.js": "https://github.com/seikichi/tiff.js.git",
+    "psd": "~3.2.0",
     "exif-js": "2.3.0"
   },
   "devDependencies": {},
