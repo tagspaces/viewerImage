@@ -54,7 +54,21 @@ $(document).ready(() => {
   };
   let viewer;
 
-  $('#imageContent').attr('src', filePath).bind('load', () => {
+  if (filePath.endsWith('.tiff') || filePath.endsWith('.tiff')) {
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'arraybuffer';
+    xhr.open('GET', filePath);
+    xhr.onload = (e) => {
+      const tiff = new Tiff({buffer: xhr.response});
+      const canvas = tiff.toCanvas();
+      $('#imageContent').attr('src', canvas.toDataURL());
+    };
+    xhr.send();
+  } else {
+    $('#imageContent').attr('src', filePath);
+  }
+
+  $('#imageContent').bind('load', () => {
     viewer = new Viewer(document.getElementById('imageContent'), opt);
     viewer.full();
     imageViewerContainer[0].style.background = imageBackgroundColor;
