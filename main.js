@@ -1,6 +1,7 @@
 /* Copyright (c) 2013-present The TagSpaces Authors.
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
-/* globals initI18N, getParameterByName, $, isWeb, isCordova, Viewer, EXIF, Nanobar, jQuery */
+/* globals initI18N, getParameterByName, $, isWeb, isCordova, Viewer, EXIF, Nanobar, jQuery, Tiff */
+
 'use strict';
 
 $(document).ready(() => {
@@ -9,7 +10,7 @@ $(document).ready(() => {
   initI18N(locale, 'ns.viewerImage.json');
 
   if (isCordova || isWeb) {
-
+    // Cordova or web case
   } else {
     filePath = 'file://' + filePath;
   }
@@ -59,8 +60,8 @@ $(document).ready(() => {
       const xhr = new XMLHttpRequest();
       xhr.responseType = 'arraybuffer';
       xhr.open('GET', filePath);
-      xhr.onload = (e) => {
-        const tiff = new Tiff({buffer: xhr.response});
+      xhr.onload = () => {
+        const tiff = new Tiff({ buffer: xhr.response });
         const canvas = tiff.toCanvas();
         $('#imageContent').attr('src', canvas.toDataURL());
       };
@@ -72,13 +73,14 @@ $(document).ready(() => {
       PSD.fromURL(filePath).then((psd) => {
         const image = psd.image.toPng();
         $('#imageContent').attr('src', image.getAttribute('src'));
-      });
+        return true;
+      }).catch(() => console.warn('Error loading PSD'));
     });
   } else {
     $('#imageContent').attr('src', filePath);
   }
 
-  $('#imageContent').bind('load', () => {
+  $('#imageContent').bind('load', (event) => {
     viewer = new Viewer(document.getElementById('imageContent'), opt);
     viewer.full();
     imageViewerContainer[0].style.background = imageBackgroundColor;
@@ -86,10 +88,10 @@ $(document).ready(() => {
     $imgViewer.addClass('imgViewer');
     if (filePath.toLowerCase().indexOf('jpg') === (filePath.length - 3) ||
       filePath.toLowerCase().indexOf('jpeg') === (filePath.length - 4)) {
-      EXIF.getData(this, () => {
+      EXIF.getData(event.currentTarget, function() {
         const orientation = EXIF.getTag(this, 'Orientation');
         correctOrientation(orientation);
-        //console.log(EXIF.pretty(this));
+        // console.log(EXIF.pretty(this));
         exifObj = {};
         const tags = ['Make', 'Model', 'DateTime', 'Artist', 'Copyright', 'ExposureTime ', 'FNumber', 'ISOSpeedRatings', 'ShutterSpeedValue', 'ApertureValue', 'FocalLength'];
         for (let tag in tags) {
