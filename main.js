@@ -83,24 +83,27 @@ $(document).ready(() => {
   $('#imageContent').bind('load', (event) => {
     viewer = new Viewer(document.getElementById('imageContent'), opt);
     viewer.full();
+
+    const $imageContentViewer = $('#imageContent');
+    const eTarget = event.target;
     imageViewerContainer[0].style.background = imageBackgroundColor;
-    $(this).addClass('transparentImageBackground');
+    $imageContentViewer.addClass('transparentImageBackground');
     $imgViewer.addClass('imgViewer');
     if (filePath.toLowerCase().indexOf('jpg') === (filePath.length - 3) ||
       filePath.toLowerCase().indexOf('jpeg') === (filePath.length - 4)) {
-      EXIF.getData(event.currentTarget, function() {
-        const orientation = EXIF.getTag(this, 'Orientation');
+      EXIF.getData(eTarget, () => {
+        const orientation = EXIF.getTag(eTarget, 'Orientation');
         correctOrientation(orientation);
         // console.log(EXIF.pretty(this));
         exifObj = {};
         const tags = ['Make', 'Model', 'DateTime', 'Artist', 'Copyright', 'ExposureTime ', 'FNumber', 'ISOSpeedRatings', 'ShutterSpeedValue', 'ApertureValue', 'FocalLength'];
         for (let tag in tags) {
           const prop = tags[tag];
-          if (this.exifdata.hasOwnProperty(prop)) {
-            exifObj[prop] = this.exifdata[prop];
+          if (eTarget.exifdata.hasOwnProperty(prop)) {
+            exifObj[prop] = eTarget.exifdata[prop];
           }
         }
-        jQuery.extend(exifObj, this.iptcdata);
+        jQuery.extend(exifObj, eTarget.iptcdata);
         if (!jQuery.isEmptyObject(exifObj)) {
           $('#exifButton').parent().show();
           printEXIF();
