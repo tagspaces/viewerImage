@@ -46,6 +46,7 @@ $(document).ready(() => {
     navbar: false,
     toolbar: false,
     title: false,
+    transition: false,
     fullscreen: true,
     inline: 'inline',
     // fading: true,
@@ -184,6 +185,7 @@ $(document).ready(() => {
 
   $('#whiteBackgroundColor').on('click', (e) => {
     e.stopPropagation();
+    document.body.style.background = '#ffffff';
     imageViewerContainer[0].style.background = '#ffffff';
     imageBackgroundColor = '#ffffff';
     saveExtSettings();
@@ -191,6 +193,7 @@ $(document).ready(() => {
 
   $('#blackBackgroundColor').on('click', (e) => {
     e.stopPropagation();
+    document.body.style.background = '#000000';
     imageViewerContainer[0].style.background = '#000000';
     imageBackgroundColor = '#000000';
     saveExtSettings();
@@ -198,6 +201,7 @@ $(document).ready(() => {
 
   $('#sepiaBackgroundColor').on('click', (e) => {
     e.stopPropagation();
+    document.body.style.background = '#f4ecd8';
     imageViewerContainer[0].style.background = '#f4ecd8';
     imageBackgroundColor = '#f4ecd8';
     saveExtSettings();
