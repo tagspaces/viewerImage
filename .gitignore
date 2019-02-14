@@ -32,3 +32,5 @@ libs/**/*.h*
 libs/**/*example*
 libs/**/post.js
 libs/**/pre.js
+libs/viewerjs/.stylelintrc
+libs/**/.github/**

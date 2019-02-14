@@ -1,42 +1,45 @@
 const babel = require('rollup-plugin-babel');
+const changeCase = require('change-case');
+const createBanner = require('create-banner');
 const pkg = require('./package');
 
-const now = new Date();
+pkg.name = pkg.name.replace('js', '');
+
+const name = changeCase.pascalCase(pkg.name);
+const banner = createBanner({
+  data: {
+    name: `${name}.js`,
+    year: '2015-present',
+  },
+});
 
 module.exports = {
-  input: 'src/js/viewer.js',
+  input: 'src/index.js',
   output: [
     {
-      file: 'dist/viewer.js',
+      banner,
+      name,
+      file: `dist/${pkg.name}.js`,
       format: 'umd',
     },
     {
-      file: 'dist/viewer.common.js',
+      banner,
+      file: `dist/${pkg.name}.common.js`,
       format: 'cjs',
     },
     {
-      file: 'dist/viewer.esm.js',
-      format: 'es',
+      banner,
+      file: `dist/${pkg.name}.esm.js`,
+      format: 'esm',
     },
     {
-      file: 'docs/js/viewer.js',
+      banner,
+      name,
+      file: `docs/js/${pkg.name}.js`,
       format: 'umd',
     },
   ],
-  name: 'Viewer',
   plugins: [
-    babel({
-      exclude: '/node_modules/**',
-    }),
+    babel(),
   ],
-  banner: `/*!
- * Viewer.js v${pkg.version}
- * https://github.com/${pkg.repository}
- *
- * Copyright (c) 2015-${now.getFullYear()} ${pkg.author.name}
- * Released under the ${pkg.license} license
- *
- * Date: ${now.toISOString()}
- */
-`,
 };

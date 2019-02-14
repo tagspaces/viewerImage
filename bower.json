@@ -5,7 +5,7 @@
   "type": "viewer",
   "version": "1.0.0",
   "dependencies": {
-    "viewerjs" : "https://github.com/fengyuanchen/viewerjs/tree/v0.10.0",
+    "viewerjs" : "https://github.com/fengyuanchen/viewerjs.git#v1.3.2",
     "nanobar": "~0.4.2",
     "tiff.js": "https://github.com/seikichi/tiff.js.git",
     "psd": "~3.2.0",
