@@ -81,13 +81,18 @@ $(document).ready(() => {
     $('#imageContent').attr('src', filePath);
   }
 
-  $('#imageContent').bind('load', (event) => {
+  let imageViewerContainer;
+
+  $('#imageContent').on('load', (event) => {
     viewer = new Viewer(document.getElementById('imageContent'), opt);
     viewer.full();
 
     const $imageContentViewer = $('#imageContent');
     const eTarget = event.target;
-    imageViewerContainer[0].style.background = imageBackgroundColor;
+    imageViewerContainer = document.getElementsByClassName('viewer-container');
+    if (imageViewerContainer && imageViewerContainer[0] && imageViewerContainer[0].style) {
+      imageViewerContainer[0].style.background = imageBackgroundColor;
+    }
     $imageContentViewer.addClass('transparentImageBackground');
     $imgViewer.addClass('imgViewer');
     if (filePath.toLowerCase().indexOf('jpg') === (filePath.length - 3) ||
@@ -180,8 +185,6 @@ $(document).ready(() => {
       viewer.scale(-1); // Flip both horizontal and vertical
     }
   });
-
-  const imageViewerContainer = document.getElementsByClassName('viewer-container');
 
   $('#whiteBackgroundColor').on('click', (e) => {
     e.stopPropagation();
