@@ -2,8 +2,6 @@
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
 /* globals initI18N, getParameterByName, $, isWeb, isCordova, Viewer, EXIF, Nanobar, jQuery, Tiff */
 
-'use strict';
-
 $(document).ready(() => {
   let filePath = getParameterByName('file'); // TODO check decodeURIComponent loading fileswith#inthe.name
   const locale = getParameterByName('locale');
@@ -40,20 +38,7 @@ $(document).ready(() => {
     extSettings = JSON.parse(localStorage.getItem('imageViewerSettings'));
   }
 
-  const opt = {
-    // url: filePath,
-    movable: true,
-    navbar: false,
-    toolbar: false,
-    title: false,
-    transition: false,
-    fullscreen: true,
-    inline: 'inline',
-    // fading: true,
-    hide: (e) => {
-      console.log(e.type);
-    }
-  };
+  let orientation;
   let viewer;
 
   if (filePath.endsWith('.tiff') || filePath.endsWith('.tiff')) {
@@ -84,7 +69,37 @@ $(document).ready(() => {
   let imageViewerContainer;
 
   $('#imageContent').on('load', (event) => {
-    viewer = new Viewer(document.getElementById('imageContent'), opt);
+    viewer = new Viewer(document.getElementById('imageContent'), {
+      movable: true,
+      navbar: false,
+      toolbar: false,
+      title: false,
+      transition: false,
+      fullscreen: true,
+      inline: 'inline',
+      // fading: true,
+      hide: (e) => {
+        console.log(e.type);
+      },
+      viewed: () => {
+        switch (orientation) {
+        case 8:
+          viewer.rotate(-90);
+          break;
+        case 3:
+          viewer.rotate(180);
+          break;
+        case 6:
+          viewer.rotate(90);
+          break;
+        case 1:
+          viewer.rotate(0);
+          break;
+        default:
+          break;
+        }
+      }
+    });
     viewer.full();
 
     const $imageContentViewer = $('#imageContent');
@@ -95,11 +110,9 @@ $(document).ready(() => {
     }
     $imageContentViewer.addClass('transparentImageBackground');
     $imgViewer.addClass('imgViewer');
-    if (filePath.toLowerCase().indexOf('jpg') === (filePath.length - 3) ||
-      filePath.toLowerCase().indexOf('jpeg') === (filePath.length - 4)) {
+    if (filePath.toLowerCase().endsWith('jpg') || filePath.toLowerCase().endsWith('jpeg')) {
       EXIF.getData(eTarget, () => {
-        const orientation = EXIF.getTag(eTarget, 'Orientation');
-        correctOrientation(orientation);
+        orientation = EXIF.getTag(eTarget, 'Orientation');
         // console.log(EXIF.pretty(this));
         exifObj = {};
         const tags = ['Make', 'Model', 'DateTime', 'Artist', 'Copyright', 'ExposureTime ', 'FNumber', 'ISOSpeedRatings', 'ShutterSpeedValue', 'ApertureValue', 'FocalLength'];
@@ -236,49 +249,7 @@ $(document).ready(() => {
     }
   }
 
-  function correctOrientation(orientation) {
-    switch (orientation) {
-      case 8:
-        viewer.rotate(-90);
-        break;
-      case 3:
-        viewer.rotate(180);
-        break;
-      case 6:
-        viewer.rotate(90);
-        break;
-      case 1:
-        viewer.rotate(0);
-        break;
-      default:
-        viewer.rotate(0);
-    }
-  }
-
   // if (isCordova) {
   //  $('#printButton').hide();
   // }
-
-  // Nano progressbar
-  $(() => {
-    const options = {
-      bg: '#42BEDB', // (optional) background css property, '#000' by default
-      // leave target blank for global nanobar
-      target: document.getElementById('nanoBar'), // (optional) Where to put the progress bar, nanobar will be fixed to top of document if target is null
-      // id for new nanobar
-      id: 'nanoBar' // (optional) id for nanobar div
-    };
-    const nanobar = new Nanobar(options);
-    let pct = 0;
-    $(document).ajaxSend(() => {
-      pct += 0.1;
-      // move bar
-      nanobar.go(pct);
-      if (pct > 100.0) {
-        pct = 0.0;
-      }
-    }).ajaxComplete(() => {
-      nanobar.go(100);
-    });
-  });
 });
