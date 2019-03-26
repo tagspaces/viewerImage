@@ -1,6 +1,6 @@
 /* Copyright (c) 2013-present The TagSpaces Authors.
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
-/* globals initI18N, getParameterByName, $, isWeb, isCordova, Viewer, EXIF, Nanobar, jQuery, Tiff */
+/* globals initI18N, getParameterByName, $, isWeb, isCordova, Viewer, EXIF, jQuery, Tiff */
 
 $(document).ready(() => {
   let filePath = getParameterByName('file'); // TODO check decodeURIComponent loading fileswith#inthe.name
@@ -41,7 +41,7 @@ $(document).ready(() => {
   let orientation;
   let viewer;
 
-  if (filePath.endsWith('.tiff') || filePath.endsWith('.tiff')) {
+  if (filePath.toLowerCase().endsWith('.tiff') || filePath.toLowerCase().endsWith('.tif')) {
     $.getScript('libs/tiff.js/tiff.min.js', () => {
       const xhr = new XMLHttpRequest();
       xhr.responseType = 'arraybuffer';
@@ -53,7 +53,7 @@ $(document).ready(() => {
       };
       xhr.send();
     });
-  } else if (filePath.endsWith('.psd')) {
+  } else if (filePath.toLowerCase().endsWith('.psd')) {
     $.getScript('libs/psd/dist/psd.min.js', () => {
       const PSD = require('psd');
       PSD.fromURL(filePath).then((psd) => {
@@ -115,7 +115,7 @@ $(document).ready(() => {
         orientation = EXIF.getTag(eTarget, 'Orientation');
         // console.log(EXIF.pretty(this));
         exifObj = {};
-        const tags = ['Make', 'Model', 'DateTime', 'Artist', 'Copyright', 'ExposureTime ', 'FNumber', 'ISOSpeedRatings', 'ShutterSpeedValue', 'ApertureValue', 'FocalLength'];
+        const tags = ['Make', 'Model', 'DateTime', 'Artist', 'Copyright', 'ExposureTime ', 'FNumber', 'ISOSpeedRatings', 'ShutterSpeedValue', 'ApertureValue', 'FocalLength', 'GPSLatitude', 'GPSLongitude'];
         for (let tag in tags) {
           const prop = tags[tag];
           if (eTarget.exifdata.hasOwnProperty(prop)) {
