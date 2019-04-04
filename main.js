@@ -115,7 +115,12 @@ $(document).ready(() => {
         orientation = EXIF.getTag(eTarget, 'Orientation');
         // console.log(EXIF.pretty(this));
         exifObj = {};
-        const tags = ['Make', 'Model', 'DateTime', 'Artist', 'Copyright', 'ExposureTime ', 'FNumber', 'ISOSpeedRatings', 'ShutterSpeedValue', 'ApertureValue', 'FocalLength', 'GPSLatitude', 'GPSLongitude'];
+        const tags = [
+          'Make', 'Model',
+          'DateTime', 'Artist', 'Copyright',
+          'ExposureTime ', 'FNumber', 'ISOSpeedRatings', 'ShutterSpeedValue', 'ApertureValue', 'FocalLength',
+          'GPSLatitude', 'GPSLatitudeRef', 'GPSLongitude', 'GPSLongitudeRef'
+        ];
         for (let tag in tags) {
           const prop = tags[tag];
           if (eTarget.exifdata.hasOwnProperty(prop)) {
