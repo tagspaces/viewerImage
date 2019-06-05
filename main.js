@@ -16,10 +16,9 @@ $(document).ready(() => {
   const $imgViewer = $('#imageContainer');
   let exifObj;
 
-  let extSettings;
+  // load settings for viewerSettings
+  const extSettings = JSON.parse(localStorage.getItem('imageViewerSettings'));
   let imageBackgroundColor = '#000000';
-  loadExtSettings();
-
   if (extSettings && extSettings.imageBackgroundColor) {
     imageBackgroundColor = extSettings.imageBackgroundColor;
   }
@@ -31,11 +30,6 @@ $(document).ready(() => {
     };
     localStorage.setItem('imageViewerSettings', JSON.stringify(settings));
     console.debug(settings);
-  }
-
-  // load settings for viewerSettings
-  function loadExtSettings() {
-    extSettings = JSON.parse(localStorage.getItem('imageViewerSettings'));
   }
 
   let orientation;
@@ -82,6 +76,10 @@ $(document).ready(() => {
         console.log(e.type);
       },
       viewed: () => {
+        imageViewerContainer = document.getElementsByClassName('viewer-container');
+        if (imageViewerContainer && imageViewerContainer[0] && imageViewerContainer[0].style) {
+          imageViewerContainer[0].style.background = imageBackgroundColor;
+        }
         switch (orientation) {
         case 8:
           viewer.rotate(-90);
@@ -104,10 +102,7 @@ $(document).ready(() => {
 
     const $imageContentViewer = $('#imageContent');
     const eTarget = event.target;
-    imageViewerContainer = document.getElementsByClassName('viewer-container');
-    if (imageViewerContainer && imageViewerContainer[0] && imageViewerContainer[0].style) {
-      imageViewerContainer[0].style.background = imageBackgroundColor;
-    }
+
     $imageContentViewer.addClass('transparentImageBackground');
     $imgViewer.addClass('imgViewer');
     if (filePath.toLowerCase().endsWith('jpg') || filePath.toLowerCase().endsWith('jpeg')) {
