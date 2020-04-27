@@ -35,7 +35,10 @@ $(document).ready(() => {
   let orientation;
   let viewer;
 
-  if (filePath.toLowerCase().endsWith('.tiff') || filePath.toLowerCase().endsWith('.tif')) {
+  if (
+    filePath.toLowerCase().endsWith('.tiff') ||
+    filePath.toLowerCase().endsWith('.tif')
+  ) {
     $.getScript('libs/tiff.js/tiff.min.js', () => {
       const xhr = new XMLHttpRequest();
       xhr.responseType = 'arraybuffer';
@@ -50,11 +53,13 @@ $(document).ready(() => {
   } else if (filePath.toLowerCase().endsWith('.psd')) {
     $.getScript('libs/psd/dist/psd.min.js', () => {
       const PSD = require('psd');
-      PSD.fromURL(filePath).then((psd) => {
-        const image = psd.image.toPng();
-        $('#imageContent').attr('src', image.getAttribute('src'));
-        return true;
-      }).catch(() => console.warn('Error loading PSD'));
+      PSD.fromURL(filePath)
+        .then(psd => {
+          const image = psd.image.toPng();
+          $('#imageContent').attr('src', image.getAttribute('src'));
+          return true;
+        })
+        .catch(() => console.warn('Error loading PSD'));
     });
   } else {
     $('#imageContent').attr('src', filePath);
@@ -62,7 +67,7 @@ $(document).ready(() => {
 
   let imageViewerContainer;
 
-  $('#imageContent').on('load', (event) => {
+  $('#imageContent').on('load', event => {
     viewer = new Viewer(document.getElementById('imageContent'), {
       movable: true,
       navbar: false,
@@ -72,29 +77,35 @@ $(document).ready(() => {
       fullscreen: true,
       inline: 'inline',
       // fading: true,
-      hide: (e) => {
+      hide: e => {
         console.log(e.type);
       },
       viewed: () => {
-        imageViewerContainer = document.getElementsByClassName('viewer-container');
-        if (imageViewerContainer && imageViewerContainer[0] && imageViewerContainer[0].style) {
+        imageViewerContainer = document.getElementsByClassName(
+          'viewer-container'
+        );
+        if (
+          imageViewerContainer &&
+          imageViewerContainer[0] &&
+          imageViewerContainer[0].style
+        ) {
           imageViewerContainer[0].style.background = imageBackgroundColor;
         }
         switch (orientation) {
-        case 8:
-          viewer.rotate(-90);
-          break;
-        case 3:
-          viewer.rotate(180);
-          break;
-        case 6:
-          viewer.rotate(90);
-          break;
-        case 1:
-          viewer.rotate(0);
-          break;
-        default:
-          break;
+          case 8:
+            viewer.rotate(-90);
+            break;
+          case 3:
+            viewer.rotate(180);
+            break;
+          case 6:
+            viewer.rotate(90);
+            break;
+          case 1:
+            viewer.rotate(0);
+            break;
+          default:
+            break;
         }
       }
     });
@@ -105,16 +116,30 @@ $(document).ready(() => {
 
     $imageContentViewer.addClass('transparentImageBackground');
     $imgViewer.addClass('imgViewer');
-    if (filePath.toLowerCase().endsWith('jpg') || filePath.toLowerCase().endsWith('jpeg')) {
+    if (
+      filePath.toLowerCase().includes('.jpg') ||
+      filePath.toLowerCase().includes('.jpeg')
+    ) {
       EXIF.getData(eTarget, () => {
         orientation = EXIF.getTag(eTarget, 'Orientation');
         // console.log(EXIF.pretty(this));
         exifObj = {};
         const tags = [
-          'Make', 'Model',
-          'DateTime', 'Artist', 'Copyright',
-          'ExposureTime ', 'FNumber', 'ISOSpeedRatings', 'ShutterSpeedValue', 'ApertureValue', 'FocalLength',
-          'GPSLatitude', 'GPSLatitudeRef', 'GPSLongitude', 'GPSLongitudeRef'
+          'Make',
+          'Model',
+          'DateTime',
+          'Artist',
+          'Copyright',
+          'ExposureTime ',
+          'FNumber',
+          'ISOSpeedRatings',
+          'ShutterSpeedValue',
+          'ApertureValue',
+          'FocalLength',
+          'GPSLatitude',
+          'GPSLatitudeRef',
+          'GPSLongitude',
+          'GPSLongitudeRef'
         ];
         for (let tag in tags) {
           const prop = tags[tag];
@@ -124,7 +149,9 @@ $(document).ready(() => {
         }
         jQuery.extend(exifObj, eTarget.iptcdata);
         if (!jQuery.isEmptyObject(exifObj)) {
-          $('#exifButton').parent().show();
+          $('#exifButton')
+            .parent()
+            .show();
           printEXIF();
         }
       });
@@ -134,12 +161,12 @@ $(document).ready(() => {
   $('#imageContent').css('visibility', 'hidden');
 
   const offset = 0;
-  $('#zoomInButton').on('click', (e) => {
+  $('#zoomInButton').on('click', e => {
     e.stopPropagation();
     viewer.zoom(offset + 1);
   });
 
-  $('#zoomOutButton').on('click', (e) => {
+  $('#zoomOutButton').on('click', e => {
     e.stopPropagation();
     viewer.zoom(offset - 1);
   });
@@ -152,12 +179,12 @@ $(document).ready(() => {
     viewer.reset();
   });
 
-  $('#rotateLeftButton').on('click', (e) => {
+  $('#rotateLeftButton').on('click', e => {
     e.stopPropagation();
     viewer.rotate(-90);
   });
 
-  $('#rotateRightButton').on('click', (e) => {
+  $('#rotateRightButton').on('click', e => {
     e.stopPropagation();
     viewer.rotate(90);
   });
@@ -166,7 +193,7 @@ $(document).ready(() => {
   let flipVertical;
   let flipBoth;
   let flipColor;
-  $('#flipHorizontal').on('click', (e) => {
+  $('#flipHorizontal').on('click', e => {
     e.stopPropagation();
     if (flipHorizontal === true) {
       flipHorizontal = false;
@@ -177,7 +204,7 @@ $(document).ready(() => {
     }
   });
 
-  $('#flipVertical').on('click', (e) => {
+  $('#flipVertical').on('click', e => {
     e.stopPropagation();
     if (flipVertical === true) {
       flipVertical = false;
@@ -188,7 +215,7 @@ $(document).ready(() => {
     }
   });
 
-  $('#flipBoth').on('click', (e) => {
+  $('#flipBoth').on('click', e => {
     e.stopPropagation();
     if (flipBoth === true) {
       flipBoth = false;
@@ -199,7 +226,7 @@ $(document).ready(() => {
     }
   });
 
-  $('#whiteBackgroundColor').on('click', (e) => {
+  $('#whiteBackgroundColor').on('click', e => {
     e.stopPropagation();
     document.body.style.background = '#ffffff';
     imageViewerContainer[0].style.background = '#ffffff';
@@ -207,7 +234,7 @@ $(document).ready(() => {
     saveExtSettings();
   });
 
-  $('#blackBackgroundColor').on('click', (e) => {
+  $('#blackBackgroundColor').on('click', e => {
     e.stopPropagation();
     document.body.style.background = '#000000';
     imageViewerContainer[0].style.background = '#000000';
@@ -215,7 +242,7 @@ $(document).ready(() => {
     saveExtSettings();
   });
 
-  $('#sepiaBackgroundColor').on('click', (e) => {
+  $('#sepiaBackgroundColor').on('click', e => {
     e.stopPropagation();
     document.body.style.background = '#f4ecd8';
     imageViewerContainer[0].style.background = '#f4ecd8';
@@ -223,7 +250,7 @@ $(document).ready(() => {
     saveExtSettings();
   });
 
-  $('#flipBlackAndWhiteColor').on('click', (e) => {
+  $('#flipBlackAndWhiteColor').on('click', e => {
     e.stopPropagation();
     if (flipColor) {
       flipColor = false;
