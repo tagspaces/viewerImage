@@ -2,6 +2,13 @@
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
 /* globals initI18N, getParameterByName, $, isWeb, isCordova, Viewer, EXIF, jQuery, Tiff */
 
+function getChromeVersion() {
+  const raw = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
+  return raw ? parseInt(raw[2], 10) : false;
+}
+
+const chromeVersion = getChromeVersion();
+
 $(document).ready(() => {
   let filePath = getParameterByName('file'); // TODO check decodeURIComponent loading fileswith#inthe.name
   const locale = getParameterByName('locale');
@@ -91,21 +98,68 @@ $(document).ready(() => {
         ) {
           imageViewerContainer[0].style.background = imageBackgroundColor;
         }
-        switch (orientation) {
-          case 8:
-            viewer.rotate(-90);
-            break;
-          case 3:
-            viewer.rotate(180);
-            break;
-          case 6:
-            viewer.rotate(90);
-            break;
-          case 1:
-            viewer.rotate(0);
-            break;
-          default:
-            break;
+
+        if (
+          filePath.toLowerCase().includes('.jpg') ||
+          filePath.toLowerCase().includes('.jpeg')
+        ) {
+          EXIF.getData(eTarget, () => {
+            orientation = EXIF.getTag(eTarget, 'Orientation');
+            if (chromeVersion && chromeVersion >= 81) {
+              // no rotation needed
+            } else {
+              switch (orientation) {
+                case 8:
+                  viewer.rotate(-90);
+                  break;
+                case 3:
+                  viewer.rotate(180);
+                  break;
+                case 6:
+                  viewer.rotate(90);
+                  break;
+                case 1:
+                  viewer.rotate(0);
+                  break;
+                default:
+                  break;
+              }
+            }
+
+            // console.log(EXIF.pretty(this));
+            // Construct EXIF info
+            exifObj = {};
+            const tags = [
+              'Make',
+              'Model',
+              'DateTime',
+              'Artist',
+              'Copyright',
+              'ExposureTime ',
+              'FNumber',
+              'ISOSpeedRatings',
+              'ShutterSpeedValue',
+              'ApertureValue',
+              'FocalLength',
+              'GPSLatitude',
+              'GPSLatitudeRef',
+              'GPSLongitude',
+              'GPSLongitudeRef'
+            ];
+            for (let tag in tags) {
+              const prop = tags[tag];
+              if (eTarget.exifdata.hasOwnProperty(prop)) {
+                exifObj[prop] = eTarget.exifdata[prop];
+              }
+            }
+            jQuery.extend(exifObj, eTarget.iptcdata);
+            if (!jQuery.isEmptyObject(exifObj)) {
+              $('#exifButton')
+                .parent()
+                .show();
+              printEXIF();
+            }
+          });
         }
       }
     });
@@ -116,46 +170,6 @@ $(document).ready(() => {
 
     $imageContentViewer.addClass('transparentImageBackground');
     $imgViewer.addClass('imgViewer');
-    if (
-      filePath.toLowerCase().includes('.jpg') ||
-      filePath.toLowerCase().includes('.jpeg')
-    ) {
-      EXIF.getData(eTarget, () => {
-        orientation = EXIF.getTag(eTarget, 'Orientation');
-        // console.log(EXIF.pretty(this));
-        exifObj = {};
-        const tags = [
-          'Make',
-          'Model',
-          'DateTime',
-          'Artist',
-          'Copyright',
-          'ExposureTime ',
-          'FNumber',
-          'ISOSpeedRatings',
-          'ShutterSpeedValue',
-          'ApertureValue',
-          'FocalLength',
-          'GPSLatitude',
-          'GPSLatitudeRef',
-          'GPSLongitude',
-          'GPSLongitudeRef'
-        ];
-        for (let tag in tags) {
-          const prop = tags[tag];
-          if (eTarget.exifdata.hasOwnProperty(prop)) {
-            exifObj[prop] = eTarget.exifdata[prop];
-          }
-        }
-        jQuery.extend(exifObj, eTarget.iptcdata);
-        if (!jQuery.isEmptyObject(exifObj)) {
-          $('#exifButton')
-            .parent()
-            .show();
-          printEXIF();
-        }
-      });
-    }
   });
 
   $('#imageContent').css('visibility', 'hidden');
