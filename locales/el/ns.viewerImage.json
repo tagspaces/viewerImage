@@ -1,6 +1,6 @@
 {
-    "zoomOut": "Zoom Out",
-    "zoomIn": "Zoom In",
+    "zoomOut": "Σμίκρυνση ",
+    "zoomIn": "Μεγέθυνση",
     "zoomReset": "Zoom Reset",
     "rotateRight": "Rotate Right",
     "rotateLeft": "Rotate Left",
@@ -13,7 +13,7 @@
     "exif": "Show Exif & IPTC",
     "exifTitle": "Exif And IPTC Image Data",
     "changeBackgroundColor": "Change Background Color",
-    "fitToScreen": "Fit To Screen",
+    "fitToScreen": "Προσαρμογή στην Οθόνη",
     "toggleBlackAndWhiteColor": "Toggle Black&White",
     "-": "-"
 }
