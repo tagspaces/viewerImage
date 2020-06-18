@@ -33,6 +33,6 @@
   ],
   "devDependencies": {
     "bower": "^1.4.2",
-    "mversion": "^1.10.0"
+    "mversion": "^2.0.0"
   }
 }
