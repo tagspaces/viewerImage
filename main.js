@@ -91,13 +91,14 @@ $(document).ready(() => {
         imageViewerContainer = document.getElementsByClassName(
           'viewer-container'
         );
-        if (
-          imageViewerContainer &&
-          imageViewerContainer[0] &&
-          imageViewerContainer[0].style
-        ) {
-          imageViewerContainer[0].style.background = imageBackgroundColor;
-        }
+        imageViewerContainer[0].style.background = 'transparent';
+        // if (
+        //   imageViewerContainer &&
+        //   imageViewerContainer[0] &&
+        //   imageViewerContainer[0].style
+        // ) {
+        //   imageViewerContainer[0].style.background = imageBackgroundColor;
+        // }
 
         if (
           filePath.toLowerCase().includes('.jpg') ||
