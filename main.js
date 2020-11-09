@@ -175,29 +175,35 @@ $(document).ready(() => {
   $('#imageContent').css('visibility', 'hidden');
 
   const offset = 0;
+  $('#zoomInButton').off();
   $('#zoomInButton').on('click', e => {
     e.stopPropagation();
     viewer.zoom(offset + 1);
   });
 
+  $('#zoomOutButton').off();
   $('#zoomOutButton').on('click', e => {
     e.stopPropagation();
     viewer.zoom(offset - 1);
   });
 
+  $('#zoomResetButton').off();
   $('#zoomResetButton').on('click', () => {
     viewer.zoomTo(1);
   });
 
+  $('#fitToScreen').off();
   $('#fitToScreen').on('click', () => {
     viewer.reset();
   });
 
+  $('#rotateLeftButton').off();
   $('#rotateLeftButton').on('click', e => {
     e.stopPropagation();
     viewer.rotate(-90);
   });
 
+  $('#rotateRightButton').off();
   $('#rotateRightButton').on('click', e => {
     e.stopPropagation();
     viewer.rotate(90);
@@ -207,6 +213,7 @@ $(document).ready(() => {
   let flipVertical;
   let flipBoth;
   let flipColor;
+  $('#flipHorizontal').off();
   $('#flipHorizontal').on('click', e => {
     e.stopPropagation();
     if (flipHorizontal === true) {
@@ -218,6 +225,7 @@ $(document).ready(() => {
     }
   });
 
+  $('#flipVertical').off();
   $('#flipVertical').on('click', e => {
     e.stopPropagation();
     if (flipVertical === true) {
@@ -229,6 +237,7 @@ $(document).ready(() => {
     }
   });
 
+  $('#flipBoth').off();
   $('#flipBoth').on('click', e => {
     e.stopPropagation();
     if (flipBoth === true) {
@@ -240,6 +249,7 @@ $(document).ready(() => {
     }
   });
 
+  $('#whiteBackgroundColor').off();
   $('#whiteBackgroundColor').on('click', e => {
     e.stopPropagation();
     document.body.style.background = '#ffffff';
@@ -248,6 +258,7 @@ $(document).ready(() => {
     saveExtSettings();
   });
 
+  $('#blackBackgroundColor').off();
   $('#blackBackgroundColor').on('click', e => {
     e.stopPropagation();
     document.body.style.background = '#000000';
@@ -256,6 +267,7 @@ $(document).ready(() => {
     saveExtSettings();
   });
 
+  $('#sepiaBackgroundColor').off();
   $('#sepiaBackgroundColor').on('click', e => {
     e.stopPropagation();
     document.body.style.background = '#f4ecd8';
@@ -264,6 +276,7 @@ $(document).ready(() => {
     saveExtSettings();
   });
 
+  $('#flipBlackAndWhiteColor').off();
   $('#flipBlackAndWhiteColor').on('click', e => {
     e.stopPropagation();
     if (flipColor) {
