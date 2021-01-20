@@ -106,26 +106,26 @@ $(document).ready(() => {
         ) {
           EXIF.getData(eTarget, () => {
             orientation = EXIF.getTag(eTarget, 'Orientation');
-            if (chromeVersion && chromeVersion >= 81) {
-              // no rotation needed
-            } else {
-              switch (orientation) {
-                case 8:
-                  viewer.rotate(-90);
-                  break;
-                case 3:
-                  viewer.rotate(180);
-                  break;
-                case 6:
-                  viewer.rotate(90);
-                  break;
-                case 1:
-                  viewer.rotate(0);
-                  break;
-                default:
-                  break;
-              }
-            }
+            // if (chromeVersion && chromeVersion >= 81) {
+            //   // no rotation needed
+            // } else {
+            //   switch (orientation) {
+            //     case 8:
+            //       viewer.rotate(-90);
+            //       break;
+            //     case 3:
+            //       viewer.rotate(180);
+            //       break;
+            //     case 6:
+            //       viewer.rotate(90);
+            //       break;
+            //     case 1:
+            //       viewer.rotate(0);
+            //       break;
+            //     default:
+            //       break;
+            //   }
+            // }
 
             // console.log(EXIF.pretty(this));
             // Construct EXIF info
