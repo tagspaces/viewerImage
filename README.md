@@ -1,3 +1,5 @@
+This repository is archived. Please use https://github.com/tagspaces/tagspaces-extensions instead.
+
 # Image Viewer for TagSpaces
 
 A TagSpaces extension allowing you to open different kinds of image formats
